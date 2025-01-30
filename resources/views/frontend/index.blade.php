@@ -1,4 +1,5 @@
 @extends('frontend.layouts.app')
+@section('title', 'Home')
 @section('content')
 <section class="section section-lg section-main-bunner section-main-bunner-filter text-center">
         <div class="main-bunner-img" style="background-image: url(&quot;images/bg-bunner-2.jpg&quot;); background-size: cover;"></div>

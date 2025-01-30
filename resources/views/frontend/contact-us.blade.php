@@ -1,4 +1,5 @@
 @extends('frontend.layouts.app')
+@section('title', 'Contact Us')
 @section('content')
 <section class="parallax-container overlay-1" data-parallax-img="images/breadcrumbs.jpg">
         <div class="parallax-content breadcrumbs-custom context-dark"> 

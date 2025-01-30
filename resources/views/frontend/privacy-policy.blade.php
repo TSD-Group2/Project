@@ -1,15 +1,15 @@
 @extends('frontend.layouts.app')
-@section('title', 'About Us')
+@section('title', 'Privacy Policy')
 @section('content')
 <section class="parallax-container overlay-1" data-parallax-img="images/breadcrumbs.jpg">
         <div class="parallax-content breadcrumbs-custom context-dark"> 
           <div class="container">
             <div class="row justify-content-center">
               <div class="col-12 col-lg-9">
-                <h2 class="breadcrumbs-custom-title">About Us</h2>
+                <h2 class="breadcrumbs-custom-title">Privacy Policy</h2>
                 <ul class="breadcrumbs-custom-path">
                   <li><a href="index.html">Home</a></li>
-                  <li class="active">About Us</li>
+                  <li class="active">Privacy Policy</li>
                 </ul>
               </div>
             </div>

@@ -29,6 +29,10 @@ class HomeController extends Controller
     {
         return view('frontend.contact-us');
     }
+    public function privacy_policy(Request $request)
+    {
+        return view('frontend.privacy-policy');
+    }
 
     /**
      * Display the specified resource.

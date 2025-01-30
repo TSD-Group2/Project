@@ -29,6 +29,10 @@
         html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {
             display: block;
         }
+        .hover-dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0;
+    }
     </style>
 
     @stack('styles')
