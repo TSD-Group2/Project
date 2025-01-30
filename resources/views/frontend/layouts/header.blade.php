@@ -17,11 +17,9 @@
                             <ul class="rd-navbar-nav">
                                 <li class="rd-nav-item active"><a class="rd-nav-link" href="index.html">Home</a>
                                 </li>
-                                <li class="rd-nav-item"><a class="rd-nav-link" href="about-us.html">About</a>
+                                <li class="rd-nav-item"><a class="rd-nav-link" href="{{route('aboutus')}}">About</a>
                                 </li>
-                                <li class="rd-nav-item"><a class="rd-nav-link" href="typography.html">Typography</a>
-                                </li>
-                                <li class="rd-nav-item"><a class="rd-nav-link" href="contacts.html">Contacts</a>
+                                <li class="rd-nav-item"><a class="rd-nav-link" href="{{route('contact-us')}}">Contacts</a>
                                 </li>
                             </ul><a class="button button-white button-sm" href="#">book now</a>
                         </div>

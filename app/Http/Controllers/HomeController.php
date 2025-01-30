@@ -17,17 +17,17 @@ class HomeController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function aboutus()
     {
-        //
+        return view('frontend.about');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function contact_us(Request $request)
     {
-        //
+        return view('frontend.contact-us');
     }
 
     /**
