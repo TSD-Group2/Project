@@ -27,7 +27,7 @@ class AdminSeeder extends Seeder
         $user->photo = 'profile1.png';
         $user->added_by = 1;
         $user->save();
-        // $user->assignRole('Super Admin');
+        $user->assignRole('Super Admin');
 
         $user = new User();
         $user->fname = 'Jane';
@@ -42,6 +42,6 @@ class AdminSeeder extends Seeder
         $user->photo = 'profile2.png';
         $user->added_by = 1;
         $user->save();
-        // $user->assignRole('Admin');
+        $user->assignRole('Admin');
     }
 }

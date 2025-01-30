@@ -38,24 +38,19 @@ return [
 'guards' => [
     'web' => [
         'driver' => 'session',
-        'provider' => 'passengers',
+        'provider' => 'users',
     ],
 
     'admin' => [
         'driver' => 'session',
-        'provider' => 'admins',
+        'provider' => 'users',
     ],
 ],
 
 'providers' => [
-    'admins' => [
+    'users' => [
         'driver' => 'eloquent',
-        'model' => App\Models\Admin::class,
-    ],
-
-    'passengers' => [
-        'driver' => 'eloquent',
-        'model' => App\Models\Passenger::class,
+        'model' => App\Models\User::class,
     ],
 ],
 

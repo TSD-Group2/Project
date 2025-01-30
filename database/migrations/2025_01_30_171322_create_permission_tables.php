@@ -25,29 +25,27 @@ return new class extends Migration
         }
 
         Schema::create($tableNames['permissions'], function (Blueprint $table) {
-            //$table->engine('InnoDB');
             $table->bigIncrements('id'); // permission id
-            $table->string('name');       // For MyISAM use string('name', 225); // (or 166 for InnoDB with Redundant/Compact row format)
-            $table->string('guard_name'); // For MyISAM use string('guard_name', 25);
+            $table->string('name', 125);  // Adjusted length
+    $table->string('guard_name', 75);
             $table->timestamps();
 
-            $table->unique(['name', 'guard_name']);
+            // $table->unique(['name', 'guard_name']); Remove unique for admin guard
         });
 
         Schema::create($tableNames['roles'], function (Blueprint $table) use ($teams, $columnNames) {
-            //$table->engine('InnoDB');
             $table->bigIncrements('id'); // role id
             if ($teams || config('permission.testing')) { // permission.testing is a fix for sqlite testing
                 $table->unsignedBigInteger($columnNames['team_foreign_key'])->nullable();
                 $table->index($columnNames['team_foreign_key'], 'roles_team_foreign_key_index');
             }
-            $table->string('name');       // For MyISAM use string('name', 225); // (or 166 for InnoDB with Redundant/Compact row format)
-            $table->string('guard_name'); // For MyISAM use string('guard_name', 25);
+            $table->string('name', 125);       // Adjusted length for compatibility
+            $table->string('guard_name', 75); // Adjusted length for compatibility
             $table->timestamps();
             if ($teams || config('permission.testing')) {
                 $table->unique([$columnNames['team_foreign_key'], 'name', 'guard_name']);
             } else {
-                $table->unique(['name', 'guard_name']);
+                // $table->unique(['name', 'guard_name']);
             }
         });
 
@@ -138,3 +136,4 @@ return new class extends Migration
         Schema::drop($tableNames['permissions']);
     }
 };
+

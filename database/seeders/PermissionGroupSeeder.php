@@ -21,6 +21,9 @@ class PermissionGroupSeeder extends Seeder
                 'name'=>'roles-and-permission'
             ],
             [
+                'name'=>'permissions'
+            ],
+            [
                 'name'=>'dashboard'
             ],
             [
