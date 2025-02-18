@@ -25,10 +25,11 @@
   <link href="{{asset('vendor/quill/quill.bubble.css')}}" rel="stylesheet">
   <link href="{{asset('vendor/remixicon/remixicon.css')}}" rel="stylesheet">
   <link href="{{asset('vendor/simple-datatables/style.css')}}" rel="stylesheet">
-
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
   <!-- Template Main CSS File -->
   <link href="{{asset('css/style.css')}}" rel="stylesheet">
-
+  <link rel="stylesheet" href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css')}}">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <!-- =======================================================
   * Template Name: NiceAdmin
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -39,6 +40,9 @@
 </head>
 
 <body>
+<script src="https://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 @include('admin.layouts.header')
 @include('admin.layouts.sidebar')
@@ -59,6 +63,7 @@
 
   <!-- Template Main JS File -->
   <script src="{{asset('js/main.js')}}"></script>
+  @yield('scripts')
   @stack('scripts')
 
 </body>

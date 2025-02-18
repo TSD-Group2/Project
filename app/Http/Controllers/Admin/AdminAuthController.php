@@ -14,7 +14,7 @@ class AdminAuthController extends Controller
      */
     public function showLoginForm()
     {
-        if (Auth::guard('admin')->check()) {
+        if (Auth::check()) {
             return redirect()->route('admin.dashboard');
         }
         return view('auth.login');
@@ -30,9 +30,9 @@ class AdminAuthController extends Controller
             'password' => 'required',
         ]);
 
-        if (Auth::guard('admin')->attempt($request->only('email', 'password'))) {
-            Auth::guard('admin')->login(Auth::guard('admin')->user(), true);
-            Log::info('auth',[Auth::guard('admin')->user()]);
+        if (Auth::attempt($request->only('email', 'password'))) {
+            Auth::login(Auth::user(), true);
+            Log::info('auth',[Auth::user()]);
             return redirect()->intended(route('admin.dashboard'));
         }
 

@@ -18,80 +18,80 @@ class PermissionSeeder extends Seeder
             [
                 'name' => 'view-dashboard',
                 'group_id' => PermissionGroup::where('name','dashboard')->first()->id,
-                'guard_name' => 'admin',
+                'guard_name' => 'web',
             ],
             // -----------------Users------------------
             [
                 'name' => 'view-user',
                 'group_id' => PermissionGroup::where('name', 'users')->first()->id,
-                'guard_name' => 'admin',
+                'guard_name' => 'web',
             ],
             [
                 'name' => 'create-user',
                 'group_id' => PermissionGroup::where('name', 'users')->first()->id,
-                'guard_name' => 'admin',
+                'guard_name' => 'web',
             ],
             [
                 'name' => 'edit-user',
                 'group_id' => PermissionGroup::where('name', 'users')->first()->id,
-                'guard_name' => 'admin',
+                'guard_name' => 'web',
             ],
             [
                 'name' => 'delete-user',
                 'group_id' => PermissionGroup::where('name', 'users')->first()->id,
-                'guard_name' => 'admin',
+                'guard_name' => 'web',
             ],
             // -----------------Roles and Permissions------------------
             [
                 'name' => 'view-roles',
                 'group_id' => PermissionGroup::where('name', 'roles-and-permission')->first()->id,
-                'guard_name' => 'admin',
+                'guard_name' => 'web',
             ],
             [
                 'name' => 'create-roles',
                 'group_id' => PermissionGroup::where('name', 'roles-and-permission')->first()->id,
-                'guard_name' => 'admin',
+                'guard_name' => 'web',
             ],
             [
                 'name' => 'edit-roles',
                 'group_id' => PermissionGroup::where('name', 'roles-and-permission')->first()->id,
-                'guard_name' => 'admin',
+                'guard_name' => 'web',
             ],
             [
                 'name' => 'delete-roles',
                 'group_id' => PermissionGroup::where('name', 'roles-and-permission')->first()->id,
-                'guard_name' => 'admin',
+                'guard_name' => 'web',
             ],
             // -----------------Permissions------------------
             [
                 'name' => 'view-permissions',
                 'group_id' => PermissionGroup::where('name', 'permissions')->first()->id,
-                'guard_name' => 'admin',
+                'guard_name' => 'web',
             ],
             [
                 'name' => 'create-permissions',
                 'group_id' => PermissionGroup::where('name', 'permissions')->first()->id,
-                'guard_name' => 'admin',
+                'guard_name' => 'web',
             ],
             [
                 'name' => 'edit-permissions',
                 'group_id' => PermissionGroup::where('name', 'permissions')->first()->id,
-                'guard_name' => 'admin',
+                'guard_name' => 'web',
             ],
             [
                 'name' => 'delete-permissions',
                 'group_id' => PermissionGroup::where('name', 'permissions')->first()->id,
-                'guard_name' => 'admin',
+                'guard_name' => 'web',
             ],
             [
                 'name' => 'view-active-users',
                 'group_id' => PermissionGroup::where('name','logs')->first()->id,
-                'guard_name' => 'admin',
+                'guard_name' => 'web',
             ],
             [
                 'name' => 'view-activity-log',
                 'group_id' => PermissionGroup::where('name','logs')->first()->id,
-                'guard_name' => 'admin',
+                'guard_name' => 'web',
             ],
         ];
         foreach ($GroupNames as $key => $value) {

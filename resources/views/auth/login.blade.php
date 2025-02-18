@@ -11,7 +11,7 @@
                 <div class="d-flex justify-content-center py-4">
                     <a href="/" class="logo d-flex align-items-center w-auto">
                         <img src="{{ asset('assets/img/logo.png') }}" alt="">
-                        <span class="d-none d-lg-block">NiceAdmin</span>
+                        <span class="d-none d-lg-block">Srilanka Railway</span>
                     </a>
                 </div>
                 <div class="card mb-3">
@@ -34,7 +34,6 @@
                                     @enderror
                                 </div>
                             </div>
-
                             <div class="col-12">
                                 <label for="password" class="form-label">Password</label>
                                 <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="password" required>
@@ -42,9 +41,11 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-
                             <div class="col-12">
                                 <button class="btn btn-primary w-100" type="submit">Login</button>
+                            </div>
+                            <div class="col-12 text-center mt-2">
+                                <a href="{{ route('password.request') }}">Forgot Password?</a>
                             </div>
                         </form>
                     </div>

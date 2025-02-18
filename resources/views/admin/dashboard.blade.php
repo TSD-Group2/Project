@@ -106,7 +106,7 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">Customers <span>| This Year</span></h5>
+                  <h5 class="card-title">Passengers <span>| This Year</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -378,7 +378,7 @@
             <div class="card-body">
               <h5 class="card-title">Recent Activity <span>| Today</span></h5>
 
-              <div class="activity">
+              {{--<div class="activity">
 
                 <div class="activity-item d-flex">
                   <div class="activite-label">32 min</div>
@@ -428,7 +428,7 @@
                   </div>
                 </div><!-- End activity item-->
 
-              </div>
+              </div>--}}
 
             </div>
           </div><!-- End Recent Activity -->
@@ -449,9 +449,9 @@
             </div>
 
             <div class="card-body pb-0">
-              <h5 class="card-title">Budget Report <span>| This Month</span></h5>
+              <h5 class="card-title">Booking Report <span>| This Month</span></h5>
 
-              <div id="budgetChart" style="min-height: 400px;" class="echart"></div>
+              <!-- <div id="budgetChart" style="min-height: 400px;" class="echart"></div> -->
 
               <script>
                 document.addEventListener("DOMContentLoaded", () => {
