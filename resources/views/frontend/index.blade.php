@@ -2,13 +2,13 @@
 @section('title', 'Home')
 @section('content')
 <section class="section section-lg section-main-bunner section-main-bunner-filter text-center">
-        <div class="main-bunner-img" style="background-image: url(&quot;images/bg-bunner-2.jpg&quot;); background-size: cover;"></div>
+        <div class="main-bunner-img" style="background-image: url(&quot;frontend/images/train.png &quot;); background-size: cover;"></div>
         <div class="main-bunner-inner">
           <div class="container">
             <div class="box-default">
-              <h1 class="box-default-title">Welcome</h1>
-              <div class="box-default-decor"></div>
-              <p class="big box-default-text">Our restaurant offers full-service dining with breathtaking views seen from our indoor covered patio and our outdoor sundeck.</p>
+              <h1 class="box-default-title">Welcome To</h1>
+
+              <p class="big box-default-text"><h2>Online Advance Train Seats Reservation!</h2></p>
             </div>
           </div>
         </div>
@@ -60,295 +60,180 @@
             </div>
           </div>
         </section>
-        <section class="section section-lg section-inset-1 bg-gray-1 pt-lg-0">
+
+      <div id="about"> </div>
+        <section class="section section-lg section-inset-1 bg-gray-1 pt-lg-0" >
           <div class="container">
             <div class="row row-50 justify-content-xl-between align-items-lg-center">
               <div class="col-lg-6 wow fadeInLeft">
-                <div class="box-image"><img class="box-image-static" src="{{asset('frontend/images/home-3-1-483x327.jpg')}}" alt="" width="483" height="327"/><img class="box-image-position" src="{{asset('frontend/images/home-3-2-341x391.png')}}" alt="" width="341" height="391"/>
+                <div class="box-image"><img class="box-image-static" src="{{asset('frontend/images/t2.jpeg')}}" alt="" width="483" height="327"/>
                 </div>
               </div>
               <div class="col-lg-6 col-xl-5 wow fadeInRight">
                 <h2>About Us</h2>
-                <p>Pesto is a family owned and operated Italian Restaurant offering a combination of fresh ingredients and authentic Italian cooking.</p>
-                <p>We will make sure you are served the most authentic and fresh Italian dishes, while offering the best customer service. Our kitchen is committed to providing our guests with the best Italian Cuisine.</p><img src="{{asset('frontend/images/signature-1-140x50.png')}}" alt="" width="140" height="50"/>
+                <p>The Online Advanced Train Seat Reservation System was designed by Group 2 of the MSc in IT program as part of their technology software group assignment. This system aims to improve the current booking system of the Sri Lankan railway.</p>
+
               </div>
             </div>
           </div>
         </section>
       </div>
-      <!-- Featured Offers-->
+
+      <div id="terms"> </div>
       <section class="section section-lg bg-default">
         <div class="container">
-          <div class="row justify-content-center text-center">
+          <div class="row justify-content-left text-left">
             <div class="col-md-9 col-lg-7 wow-outer">
               <div class="wow slideInDown">
-                <h2>Featured Offers</h2>
-                <p class="text-opacity-80">We offer a great variety of  the best Italian dishes to our visitors and guests. Below are some of our most popular main dishes and desserts.</p>
+                <h2>Terms and Conditions</h2>
+
               </div>
             </div>
           </div>
           <div class="row row-20 row-lg-30">
-            <div class="col-md-6 col-lg-4 wow-outer">
+            <div class="col-md-9 col-lg-7 wow-outer">
               <div class="wow fadeInUp">
-                <div class="product-featured">
-                  <div class="product-featured-figure"><img src="{{asset('frontend/images/product-1-370x395.jpg')}}" alt="" width="370" height="395"/>
-                    <div class="product-featured-button"><a class="button button-primary" href="#">order now</a></div>
-                  </div>
-                  <div class="product-featured-caption">
-                    <h4><a class="product-featured-title" href="#">Ravioli</a></h4>
-                    <p class="big">$8</p>
-                  </div>
+                <div class="col-md-offset-1 col-md-10 col-sm-12">
+                    <h5>GENERAL TERMS AND CONDITIONS APPLICABLE FOR USE OF THE ONLINE SEAT RESERVATION SERVICE.
+                     </h5> <br>
+                     <ol>
+                          <li>1. Select the correct train for your journey.</li>
+                          <li>2. Fix a convenient date for both up & down journeys.</li>
+                          <li>3. User can buy 5 tickets with a single nic, if needs buy more than 5 ticket should provide extra valid nic for each 5 extra tickets.</li>
+                          <li>4. Maximum of 5 seats could be reserved at once.</li>
+                          <li>5. A reservation only becomes guaranteed once full payment has been received by Sri Lanka Railways.</li>
+                     </ol>
+
                 </div>
-              </div>
             </div>
-            <div class="col-md-6 col-lg-4 wow-outer">
-              <div class="wow fadeInUp">
-                <div class="product-featured">
-                  <div class="product-featured-figure"><img src="{{asset('frontend/images/product-2-370x395.jpg')}}" alt="" width="370" height="395"/>
-                    <div class="product-featured-button"><a class="button button-primary" href="#">order now</a></div>
-                  </div>
-                  <div class="product-featured-caption">
-                    <h4><a class="product-featured-title" href="#">Black Pasta</a></h4>
-                    <p class="big">$13</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 col-lg-4 wow-outer">
-              <div class="wow fadeInUp">
-                <div class="product-featured">
-                  <div class="product-featured-figure"><img src="{{asset('frontend/images/product-3-370x395.jpg')}}" alt="" width="370" height="395"/>
-                    <div class="product-featured-button"><a class="button button-primary" href="#">order now</a></div>
-                  </div>
-                  <div class="product-featured-caption">
-                    <h4><a class="product-featured-title" href="#">Gelato</a></h4>
-                    <p class="big">$4</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+
+
           </div>
+          <hr>
         </div>
       </section>
-      <section class="section section-lg bg-gray-1">
-        <div class="container">
-          <h2 class="text-center">Our Restaurant Menu</h2>
-          <div class="row">
-            <div class="col-12">
-              <div class="tabs-custom tabs-horizontal tabs-classic" id="tabs-1">
-                <ul class="nav nav-tabs nav-tabs-classic">
-                  <li class="nav-item" role="presentation"><a class="nav-link active" href="#tabs-1-1" data-toggle="tab">mains</a></li>
-                  <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-1-2" data-toggle="tab">Desserts</a></li>
-                  <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-1-3" data-toggle="tab">drinks</a></li>
-                </ul>
-                <div class="tab-content">
-                  <div class="tab-pane fade show active" id="tabs-1-1">
-                    <div class="box-event-modern">
-                      <div class="event-item-modern">
-                        <p class="event-time">$25.89</p>
-                        <h4 class="event-item-modern-title"><a href="#">Osso Buco</a></h4>
-                        <div class="event-item-modern-text">
-                          <p>Osso Buco is one of the Italian greats - slow cooked veal in a white wine tomato sauce. Meltingly tender, this is both hearty and luxurious.</p>
-                        </div>
-                      </div>
-                      <div class="event-item-modern">
-                        <p class="event-time">$16.89</p>
-                        <h4 class="event-item-modern-title"><a href="#">Pappardelle Mimmo</a></h4>
-                        <div class="event-item-modern-text">
-                          <p>This delicious dish tops long, wide pasta with scallops, lobster, asparagus, butter, sage and truffle oil to cater every palate.</p>
-                        </div>
-                      </div>
-                      <div class="event-item-modern">
-                        <p class="event-time">$17.89</p>
-                        <h4 class="event-item-modern-title"><a href="#">Trippa Satriano</a></h4>
-                        <div class="event-item-modern-text">
-                          <p>Thinly sliced herb encrusted ahi tuna topped with diced tomatoes, olives, capers, red onions and fennel. Perfect choice even for the first-time visitors!</p>
-                        </div>
-                      </div>
-                      <div class="event-item-modern">
-                        <p class="event-time">$18.89</p>
-                        <h4 class="event-item-modern-title"><a href="#">Filetto Di Manzo</a></h4>
-                        <div class="event-item-modern-text">
-                          <p>Wonderful combination of prime tenderloin, winter greens, Jerusalem artichoke puree, and oxtail reduction sauce.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tab-pane fade" id="tabs-1-2">
-                    <div class="box-event-modern">
-                      <div class="event-item-modern">
-                        <p class="event-time">$20.89</p>
-                        <h4 class="event-item-modern-title"><a href="#">Tiramisu</a></h4>
-                        <div class="event-item-modern-text">
-                          <p>A Pesto’s favorite - classic Italian dessert made with lady fingers, Mascarpone cheese & espresso. Perfect for both kids and adults.</p>
-                        </div>
-                      </div>
-                      <div class="event-item-modern">
-                        <p class="event-time">$6.89</p>
-                        <h4 class="event-item-modern-title"><a href="#">Cannoli</a></h4>
-                        <div class="event-item-modern-text">
-                          <p>Trio tower of cannoli filled with smooth ricotta, sugar & cinnamon, with chocolate & raspberry sauces. Single cannoli is also available.</p>
-                        </div>
-                      </div>
-                      <div class="event-item-modern">
-                        <p class="event-time">$5.89</p>
-                        <h4 class="event-item-modern-title"><a href="#">Pistachio Passion</a></h4>
-                        <div class="event-item-modern-text">
-                          <p>Layered pistachio cream, cream cheese custard & whipped cream atop a rich walnut crust.</p>
-                        </div>
-                      </div>
-                      <div class="event-item-modern">
-                        <p class="event-time">$4.89</p>
-                        <h4 class="event-item-modern-title"><a href="#">Chocolate-and-Pistachio Biscotti</a></h4>
-                        <div class="event-item-modern-text">
-                          <p>At Pesto, we vary these wonderful nutty biscotti, while also dipping them in melted dark chocolate for an extra layer of flavor.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tab-pane fade" id="tabs-1-3">
-                    <div class="box-event-modern">
-                      <div class="event-item-modern">
-                        <p class="event-time">$10.89</p>
-                        <h4 class="event-item-modern-title"><a href="#">Aperol Spritz</a></h4>
-                        <div class="event-item-modern-text">
-                          <p>The most popular drink in Venice: refreshing, easygoing &…happy! Perfect to be sipped as an “Aperitivo” just before dinner - delightful!</p>
-                        </div>
-                      </div>
-                      <div class="event-item-modern">
-                        <p class="event-time">$9.89</p>
-                        <h4 class="event-item-modern-title"><a href="#">Negroni</a></h4>
-                        <div class="event-item-modern-text">
-                          <p>Reward yourself with a moment of relaxation & pure pleasure while enjoying the full flavour & simplicity of a Negroni, an iconic Italian cocktail.</p>
-                        </div>
-                      </div>
-                      <div class="event-item-modern">
-                        <p class="event-time">$11.89</p>
-                        <h4 class="event-item-modern-title"><a href="#">Negroni Sbagliato</a></h4>
-                        <div class="event-item-modern-text">
-                          <p>A cocktail for those who prefer more delicate flavours but nonetheless want a drink full of taste & personality.</p>
-                        </div>
-                      </div>
-                      <div class="event-item-modern">
-                        <p class="event-time">$8.89</p>
-                        <h4 class="event-item-modern-title"><a href="#">White Peach Bellini</a></h4>
-                        <div class="event-item-modern-text">
-                          <p>White Peach Bellini is a classic drink from Venice Italy of white peach purée and Prosecco. It is one of our most popular drinks at Pesto.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+
+
+
       <section class="section">
         <div class="row isotope-wrap">
           <!-- Isotope Content-->
           <div class="col-lg-12">
             <div class="isotope" data-isotope-layout="fitRows" data-isotope-group="gallery" data-lightgallery="group" data-lg-thumbnail="false">
               <div class="row no-gutters row-condensed">
-                <div class="col-12 col-sm-6 col-md-4 isotope-item wow-outer" data-filter="*">
+                <div class="col-12 col-sm-12 col-md-12 isotope-item wow-outer" data-filter="*">
                   <div class="wow slideInDown">
-                    <div class="gallery-item-classic"><img src="{{asset('frontend/images/gallery-masonry-1-640x429.jpg')}}" alt="" width="640" height="429"/>
-                      <div class="gallery-item-classic-caption"><a href="images/gallery-masonry-1-original.jpg" data-lightgallery="item">zoom</a></div>
+                    <div class="gallery-item-classic"><img src="{{asset('frontend/images/bannerj.webp')}}" alt="" width="auto" height="auto"/>
+                      <div class="gallery-item-classic-caption"><a href="frontend/images/bannerj.webp" data-lightgallery="item">zoom</a></div>
                     </div>
                   </div>
                 </div>
-                <div class="col-12 col-sm-6 col-md-4 isotope-item wow-outer" data-filter="Category 3">
-                  <div class="wow slideInDown">
-                    <div class="gallery-item-classic"><img src="{{asset('frontend/images/gallery-masonry-2-640x429.jpg')}}" alt="" width="640" height="429"/>
-                      <div class="gallery-item-classic-caption"><a href="images/gallery-masonry-2-original.jpg" data-lightgallery="item">zoom</a></div>
-                    </div>
-                  </div>
+
                 </div>
-                <div class="col-12 col-md-4 isotope-item wow-outer" data-filter="Category 3">
-                  <div class="wow slideInDown">
-                    <div class="gallery-item-classic"><img src="{{asset('frontend/images/gallery-masonry-3-640x429.jpg')}}" alt="" width="640" height="429"/>
-                      <div class="gallery-item-classic-caption"><a href="images/gallery-masonry-3-original.jpg" data-lightgallery="item">zoom</a></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-12 col-sm-12 col-md-6 isotope-item wow-outer" data-filter="Category 3">
-                  <div class="wow fadeInUp">
-                    <div class="gallery-item-classic"><img src="{{asset('frontend/images/gallery-masonry-4-960x429.jpg')}}" alt="" width="960" height="429"/>
-                      <div class="gallery-item-classic-caption"><a href="images/gallery-masonry-4-original.jpg" data-lightgallery="item">zoom</a></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-12 col-sm-12 col-md-6 isotope-item wow-outer" data-filter="Category 2">
-                  <div class="wow fadeInUp">
-                    <div class="gallery-item-classic"><img src="{{asset('frontend/images/gallery-masonry-5-960x429.jpg')}}" alt="" width="960" height="429"/>
-                      <div class="gallery-item-classic-caption"><a href="images/gallery-masonry-5-original.jpg" data-lightgallery="item">zoom</a></div>
-                    </div>
-                  </div>
-                </div>
+
+
+
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      <div id="contact"> </div>
+      <section class="section section-lg bg-default" id="contact" data-stellar-background-ratio="0.5">
+        <div class="container">
+             <div class="row">
+
+                  <div class="col-md-12 col-sm-12">
+                       <div class="section-title">
+                            <h2>Contact Us - Team of Group 2</h2>
+                       </div>
+                  </div>
+
+
+                  <div align="center" class="col-md-12 col-sm-12"> <br>
+
+                       <div class="tab-content" align="left">
+                            <div class="tab-pane active" id="tab001" role="tabpanel">
+                                 <div class="tab-pane-item">
+                                      <h4>Prabath Bandara Panwaththa</h4>
+                                      <p>E-mail : <a href=mailto:>CL-MSCIT-25-08@student.icbtcampus.edu.lk</a> </p>
+                                      <p>Mobile : <a href=tel:>94771556750</a> </p>
+                                 </div>
+
+                            </div>
+
+
+                            <div class="tab-pane active" id="tab002" role="tabpanel">
+                                 <div class="tab-pane-item">
+                                      <h4>Antonroy Anpazhagan</h4>
+                                      <p>E-mail : <a href=mailto:>CL-MSCIT-26-27@student.icbtcampus.edu.lk</a> </p>
+                                      <p>Mobile : <a href=tel:>94776254981</a> </p>
+                                 </div>
+                            </div>
+
+                            <div class="tab-pane active" id="tab003" role="tabpanel">
+                                 <div class="tab-pane-item">
+                                      <h4>Jayamayuran Gnanakanthan</h4>
+                                      <p>E-mail : <a href=mailto:>CL-MSCIT-26-10@student.icbtcampus.edu.lk</a> </p>
+                                      <p>Mobile : <a href=tel:>94767011060</a> </p>
+                                 </div>
+                            </div>
+
+                            <div class="tab-pane active" id="tab004" role="tabpanel">
+                                 <div class="tab-pane-item">
+                                      <h4>Damindu Kalupathirana</h4>
+                                      <p>E-mail : <a href=mailto:>CL-MSCIT-26-18@student.icbtcampus.edu.lk</a> </p>
+                                      <p>Mobile : <a href=tel:>94714328027</a> </p>
+                                 </div>
+                            </div>
+                            <div class="tab-pane active" id="tab005" role="tabpanel">
+                                 <div class="tab-pane-item">
+                                      <h4>Kasun Fernando</h4>
+                                      <p>E-mail : <a href=mailto:>CL-MSCIT-26-07@student.icbtcampus.edu.lk</a> </p>
+                                      <p>Mobile : <a href=tel:>94773065665</a> </p>
+                                 </div>
+                                 <div class="tab-pane-item">
+                                    <h4>Gihan Wickremasinghe</h4>
+                                    <p>E-mail : <a href=mailto:>CL-MSCIT-26-0-@student.icbtcampus.edu.lk</a> </p>
+                                    <p>Mobile : <a href=tel:>94777332166</a> </p>
+                               </div>
+                            </div>
+                       </div>
+
+                  </div>
+
+
+
+             </div>
+        </div>
+   </section>
+
+   <div id="news"> </div>
       <section class="section-lg bg-default">
         <div class="container wow-outer">
           <h2 class="text-center wow slideInDown">Recent News</h2>
           <!-- Owl Carousel-->
           <div class="owl-carousel wow fadeInUp" data-items="1" data-md-items="2" data-lg-items="3" data-dots="true" data-nav="false" data-stage-padding="15" data-loop="false" data-margin="30" data-mouse-drag="false">
-            <div class="post-corporate"><a class="badge" href="#">Jul 02, 2019</a>
-              <h4 class="post-corporate-title"><a href="#">Genuine Italian Pizza: Authenticity and Choice</a></h4>
+            <div class="post-corporate"><a class="badge" href="">30 Jan 2025</a>
+              <h4 class="post-corporate-title"><a href="">The great ‘train e-ticket’ robbery</a></h4>
               <div class="post-corporate-text">
-                <p>As an Italian restaurant, we are very proud of our delicious authentic pizzas. Our three most popular choices are the Rustica, the Toscana and...</p>
-              </div><a class="post-corporate-link" href="#">Read more<span class="icon linearicons-arrow-right"></span></a>
+                <p>The issue of illegal ticket sales for the popular Colombo to Ella train route has become one of the most...</p>
+              </div><a class="post-corporate-link" href="https://www.themorning.lk/articles/Ncde0bJlsVCXjY4kj9Su">Read more<span class="icon linearicons-arrow-right"></span></a>
             </div>
-            <div class="post-corporate"><a class="badge" href="#">Jul 12, 2019</a>
-              <h4 class="post-corporate-title"><a href="#">Italian vs. American Spaghetti: Top 5 Differences</a></h4>
+            <div class="post-corporate"><a class="badge" href="">30 Jan 2025</a>
+              <h4 class="post-corporate-title"><a href="">Train tickets scam in SL exposed by a youtuber. </a></h4>
               <div class="post-corporate-text">
-                <p>Commonly, when we hear there is spaghetti for dinner we will be expecting a red tomato sauce with meat and seasonings poured over long...</p>
-              </div><a class="post-corporate-link" href="#">Read more<span class="icon linearicons-arrow-right"></span></a>
+                <p>Train tickets scam in SL exposed by a youtuber. Selling tickets at higher prices for Tourists...</p>
+              </div><a class="post-corporate-link" href="https://www.reddit.com/r/srilanka/comments/1h6g7f8/train_tickets_scam_in_sl_exposed_by_a_youtuber/?rdt=33902">Read more<span class="icon linearicons-arrow-right"></span></a>
             </div>
-            <div class="post-corporate"><a class="badge" href="#">aug 02, 2019</a>
-              <h4 class="post-corporate-title"><a href="#">The Delicious History of Lasagna and Its Origins</a></h4>
+            <div class="post-corporate"><a class="badge" href="">18 Jan 2025</a>
+              <h4 class="post-corporate-title"><a href="">Railway Officer Suspended for Train Ticket Scam</a></h4>
               <div class="post-corporate-text">
-                <p>Lasagna, could there be a more perfect dish? It’s comfort food on steroids. Layers of cheese generously piled on top of decadent amounts...</p>
-              </div><a class="post-corporate-link" href="#">Read more<span class="icon linearicons-arrow-right"></span></a>
+                <p>The Railway Department has identified a key suspect in connection with a train ticket scam, following suspicions raised...</p>
+              </div><a class="post-corporate-link" href="https://mawratanews.lk/news/railway-officer-suspended-for-train-ticket-scam-tickets-sold-at-exorbitant-prices-to-foreigners/">Read more<span class="icon linearicons-arrow-right"></span></a>
             </div>
-            <div class="post-corporate"><a class="badge" href="#">Aug 15, 2019</a>
-              <h4 class="post-corporate-title"><a href="#">Making Gelato Like a True Italian: Tips From Our Chef</a></h4>
-              <div class="post-corporate-text">
-                <p>Most would agree that gelato is the most delicious frozen dessert; the perfect ending to any meal. With origins in Sicily, gelato has been made famous...</p>
-              </div><a class="post-corporate-link" href="#">Read more<span class="icon linearicons-arrow-right"></span></a>
-            </div>
-            <div class="post-corporate"><a class="badge" href="#">Sep 15, 2019</a>
-              <h4 class="post-corporate-title"><a href="#">Italian Ingredients You Can Easily Grow at Home</a></h4>
-              <div class="post-corporate-text">
-                <p>Imagine preparing an Italian dinner but having to stop cooking because you forget an ingredient and must run to the store. How nice would it be to go...</p>
-              </div><a class="post-corporate-link" href="#">Read more<span class="icon linearicons-arrow-right"></span></a>
-            </div>
-            <div class="post-corporate"><a class="badge" href="#">Sep 28, 2019</a>
-              <h4 class="post-corporate-title"><a href="#">Our Brief Guide to Pairing Wine and Pasta the Right Way</a></h4>
-              <div class="post-corporate-text">
-                <p>To Italians, pasta is the food of the gods, and there is nothing better to go with a good pasta than a perfect wine. To the uninitiated, finding the right...</p>
-              </div><a class="post-corporate-link" href="#">Read more<span class="icon linearicons-arrow-right"></span></a>
-            </div>
-            <div class="post-corporate"><a class="badge" href="#">Oct 05, 2019</a>
-              <h4 class="post-corporate-title"><a href="#">Top 10 Famous Spring Dishes in Italian Restaurants</a></h4>
-              <div class="post-corporate-text">
-                <p>Spring is the time for growth and rebirth. One can see this throughout the countrysides of Italy with blooming flowers and budding trees. Springtime is...</p>
-              </div><a class="post-corporate-link" href="#">Read more<span class="icon linearicons-arrow-right"></span></a>
-            </div>
-            <div class="post-corporate"><a class="badge" href="#">Oct 17, 2019</a>
-              <h4 class="post-corporate-title"><a href="#">What Makes Some Seasonings Truly Italian?</a></h4>
-              <div class="post-corporate-text">
-                <p>When thinking of Italian cuisine, dishes like pasta enveloped in hearty sauces come to mind. Certain flavors seem to be found across the different...</p>
-              </div><a class="post-corporate-link" href="#">Read more<span class="icon linearicons-arrow-right"></span></a>
-            </div>
-            <div class="post-corporate"><a class="badge" href="#">Nov 10, 2019</a>
-              <h4 class="post-corporate-title"><a href="#">Types of Italian Sausage and Why They Are Different</a></h4>
-              <div class="post-corporate-text">
-                <p>There are many types of Italian sausage. The main difference in Italian sausage when compared to other sausages is the seasoning. The particular...</p>
-              </div><a class="post-corporate-link" href="#">Read more<span class="icon linearicons-arrow-right"></span></a>
-            </div>
+
           </div>
         </div>
       </section>

@@ -7,18 +7,19 @@
                     <div class="rd-navbar-panel">
                         <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
                         <div class="rd-navbar-brand">
-                            <a href="index.html">
-                                <img class="brand-logo-light" src="{{asset('frontend/images/logo-default1-140x57.png')}}" alt="" width="140" height="57" />
+                            <a href="#">
+                                <img class="brand-logo-light" src="{{asset('frontend/images/logo.png')}}" alt="" width="140" height="57" />
                             </a>
                         </div>
                     </div>
                     <div class="rd-navbar-main-element">
                         <div class="rd-navbar-nav-wrap">
                             <ul class="rd-navbar-nav">
-                                <li class="rd-nav-item active"><a class="rd-nav-link" href="{{route('home')}}">{{__('menu.home')}}</a></li>
-                                <li class="rd-nav-item"><a class="rd-nav-link" href="{{route('aboutus')}}">{{__('menu.about-us')}}</a></li>
-                                <li class="rd-nav-item"><a class="rd-nav-link" href="{{route('contact-us')}}">{{__('menu.contact-us')}}</a></li>
-                                <li class="rd-nav-item"><a class="rd-nav-link" href="{{route('privacy-policy')}}">{{__('menu.privacy-policy')}}</a></li>
+                                <li class="rd-nav-item"><a class="rd-nav-link" href="#">Home</a></li>
+                                <li class="rd-nav-item"><a class="rd-nav-link" href="#about">{{__('menu.about-us')}}</a></li>
+                                <li class="rd-nav-item"><a class="rd-nav-link" href="#contact">{{__('menu.contact-us')}}</a></li>
+                                <li class="rd-nav-item"><a class="rd-nav-link" href="#news">News</a></li>
+                                <li class="rd-nav-item"><a class="rd-nav-link" href="#terms">Terms & Conditions</a></li>
                             </ul>
                         </div>
                     </div>
@@ -27,7 +28,7 @@
                     <a class="button button-white button-sm me-3" href="#">Book Now</a>
 
                     <!-- Language Dropdown -->
-                    <div class="dropdown hover-dropdown me-3">
+                    <!--<div class="dropdown hover-dropdown me-3">
                         <a href="javascript:void(0);" class="header-link dropdown-toggle" data-bs-toggle="dropdown">
                             <img src="{{asset('assets/images/flags/us_flag.jpg')}}" alt="img" class="rounded-circle">
                         </a>
@@ -43,12 +44,12 @@
                             </li>
                             @endforeach
                         </ul>
-                    </div>
+                    </div> -->
 
                     <!-- Profile Dropdown -->
                     <div class="dropdown hover-dropdown">
                         <a href="javascript:void(0);" class="header-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img src="{{asset('assets/images/profile/user.jpg')}}" alt="profile" class="rounded-circle" width="35">
+                            <img src="{{asset('frontend/images/profile.png')}}" alt="profile" class="rounded-circle" width="35">
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="">My Profile</a></li>
