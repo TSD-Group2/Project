@@ -89,46 +89,36 @@
       </li><!-- End Components Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+        <a class="nav-link {{ Request::is('admin/roles') || Request::is('admin/roles/create') ? 'collapsed' : '' }}" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text"></i><span>Roles And Permissions</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
+        <ul id="forms-nav" class="nav-content collapse {{ Request::is('admin/roles') || Request::is('admin/roles/create') ? ' show' : '' }}" data-bs-parent="#sidebar-nav">
+          <li class="{{ Request::is('admin/roles') ? 'active' : '' }}">
             <a href="{{route('roles.index')}}">
               <i class="bi bi-circle"></i><span>Roles And Permissions</span>
             </a>
           </li>
-          <li>
-            <a href="forms-layouts.html">
-              <i class="bi bi-circle"></i><span>Form Layouts</span>
-            </a>
-          </li>
-          <li>
-            <a href="forms-editors.html">
-              <i class="bi bi-circle"></i><span>Form Editors</span>
-            </a>
-          </li>
-          <li>
-            <a href="forms-validation.html">
-              <i class="bi bi-circle"></i><span>Form Validation</span>
+          <li class="{{ Request::is('admin/roles/create') ? 'active' : '' }}">
+            <a href="{{route('roles.create')}}">
+              <i class="bi bi-circle"></i><span>Roles Create</span>
             </a>
           </li>
         </ul>
       </li><!-- End Forms Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+        <a class="nav-link {{ Request::is('admin/users') || Request::is('admin/users/create') ? 'collapsed' : '' }}" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-layout-text-window-reverse"></i><span>Users</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="tables-general.html">
-              <i class="bi bi-circle"></i><span>General Tables</span>
+        <ul id="tables-nav" class="nav-content collapse {{ Request::is('admin/users') || Request::is('admin/users/create') ? ' show' : '' }}" data-bs-parent="#sidebar-nav">
+          <li class="{{ Request::is('admin/users') ? 'active' : '' }}">
+            <a href="{{route('users.index')}}">
+              <i class="bi bi-circle"></i><span>Users List</span>
             </a>
           </li>
-          <li>
-            <a href="tables-data.html">
-              <i class="bi bi-circle"></i><span>Data Tables</span>
+          <li class="{{ Request::is('admin/users/create') ? 'active' : '' }}">
+            <a href="{{route('users.create')}}">
+              <i class="bi bi-circle"></i><span>User Create</span>
             </a>
           </li>
         </ul>

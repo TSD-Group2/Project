@@ -1,10 +1,11 @@
-@extends('app.layout.app')
-@section('title', 'Users')
-@section('main-content')
+@extends('admin.layouts.app')
+@section('title', 'Users List')
+@section('content')
 <div class="row">
     <div class="col-xl-12">
-        <div class="card custom-card mt-3">
+        <div class="card">
             <div class="card-header justify-content-between">
+            <div class="d-flex justify-content-between align-items-center">
                 <div class="card-title">
                     Users
                 </div>
@@ -17,8 +18,9 @@
                 </div>
                 @endcan
             </div>
+            </div>
             <div class="card-body">
-                            <div class="table-responsive">
+                            <div class="table">
                                 <table class="table text-nowrap" style="width: 100%;">
                                     <thead>
                                         <tr>
@@ -33,7 +35,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @include('users.filter')
+                                        @include('admin.users.filter')
                                     </tbody>
                                 </table>
                             </div>
@@ -43,7 +45,7 @@
            
 </div>
 @endsection
-@section('script')
+@section('scripts')
 <script src="{{ asset('js/common/crud_and_pagination.js') }}"></script>
 <script type="text/javascript">
     handleCrud(
