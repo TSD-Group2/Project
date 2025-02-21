@@ -1,6 +1,6 @@
-@extends('app.layout.app')
+@extends('admin.layouts.app')
 @section('title','Edit Users')
-@section('main-content')
+@section('content')
 <div class="row">
     <div class="col-xl-12">
         <div class="card custom-card mt-3">
@@ -27,17 +27,9 @@
                         <p class="mb-1">{{__('translate.user_name')}}</p>
                         <input type="text" name="username" class="form-control" id="username" value="{{$user->username}}" placeholder="{{__('translate.enter_user_name')}}">
                     </div>
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                        <p class="mb-1">{{__('translate.department')}}</p>
-                        <select class="js-example-basic-multiple" multiple="multiple" name="department[]" id="department">
-                        @foreach($departments as $department)
-                            <option value="{{$department->id}}" {{ in_array($department->id, $user->departments->pluck('id')->toArray()) ? 'selected' : '' }}>{{$department->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
                     <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 {{$user->roles()->first()->id==1?'d-none':''}}">
                         <p class="mb-1">{{__('translate.role')}}</p>
-                        <select class="js-example-basic-single" name="role" id="role">
+                        <select class="form-control js-example-basic-single" name="role" id="role">
                             @foreach($roles as $role)
                             <option value="{{$role->name}}" {{ $role->id==$user->roles()->first()->id ? 'selected' : '' }}>{{$role->name}}</option>
                             @endforeach
@@ -59,17 +51,13 @@
                         <p class="mb-1">{{__('translate.nic')}}</p>
                         <input type="text" name="nic" class="form-control" id="nic" value="{{$user->nic}}" placeholder="{{__('translate.enter_nic')}}">
                     </div>
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                        <p class="mb-1">{{__('translate.basic_salary')}}</p>
-                        <input type="text" name="basic_salary" class="form-control" id="basic_salary" value="{{$user->basic_salary}}" placeholder="{{__('translate.enter_basic_salary')}}">
-                    </div>
                     <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 material_rate_div">
                     <p class="mb-1">
                     {{__('translate.display_picture')}} <span class="text--primary">(1:1)</span>
 </p>
     <label class="text-center position-relative">
         <img class="img-fluid img-thumbnail image-preview" id="imagePreview"
-        src="{{ isset($user->dp) && $user->dp ? $user->dp : asset('assets/images/apps/admin.png') }}" 
+        src="{{ isset($user->photo) && $user->photo ? $user->photo : asset('assets/images/apps/admin.png') }}" 
             alt="Uploaded Image Preview" />
         <div class="icon-file-group">
             <div class="icon-file">
@@ -95,7 +83,7 @@
     </div>
 </div>
 @endsection
-@section('script')
+@section('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
  $('#users-form').submit(function(e) {
@@ -120,7 +108,7 @@
             },
             success: function(response) {
                 toastr.success('User Updated Successfully');
-                    window.location.href='/users';
+                    window.location.href='{{route("users.index")}}';
             },
             error: function(xhr, status, error) {
                 if (xhr.status === 422) {

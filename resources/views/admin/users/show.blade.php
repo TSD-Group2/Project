@@ -1,6 +1,6 @@
-@extends('app.layout.app')
+@extends('admin.layouts.app')
 @section('title','Show User')
-@section('main-content')
+@section('content')
 <div class="row">
     <div class="col-xl-12">
         <div class="card custom-card mt-3">
@@ -25,14 +25,6 @@
                         <input type="text" name="username" class="form-control" id="username" value="{{$user->username}}" placeholder="User Name" readonly>
                     </div>
                     <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                        <p class="mb-1">{{__('translate.department')}}</p>
-                        <select class="js-example-basic-multiple" name="department[]" id="choices-multiple-default" multiple disabled>
-                        @foreach($departments as $department)
-                            <option value="{{$department->id}}" {{ in_array($department->id, $user->departments->pluck('id')->toArray()) ? 'selected' : '' }}>{{$department->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
                         <p class="mb-1">{{__('translate.role')}}</p>
                         <input type="text" name="code" class="form-control" id="code" value="{{$user->roles()->first()->name}}" readonly>
                     </div>
@@ -51,10 +43,6 @@
                     <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
                         <p class="mb-1">{{__('translate.nic')}}</p>
                         <input type="text" name="nic" class="form-control" id="nic" value="{{$user->nic}}" placeholder="Nic" readonly>
-                    </div>
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                        <p class="mb-1">{{__('translate.basic_salary')}}</p>
-                        <input type="text" name="basic_salary" class="form-control" id="basic_salary" value="{{$user->basic_salary}}" placeholder="Basic Salary" readonly>
                     </div>
                     <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 material_rate_div">
                     <p class="mb-1">

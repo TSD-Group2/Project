@@ -1,6 +1,6 @@
-@extends('app.layout.app')
+@extends('admin.layouts.app')
 @section('title','Add Users')
-@section('main-content')
+@section('content')
 <div class="row">
     <div class="col-xl-12">
         <div class="card custom-card mt-3">
@@ -27,15 +27,6 @@
                         <p class="mb-1">{{__('translate.user_name')}}<span class="text-danger"> *</span></p>
                         <input type="text" name="username" class="form-control" id="username" placeholder="{{__('translate.enter_user_name')}}">
                         <span class="text-danger error" id="error-username"></span>
-                    </div>
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                        <p class="mb-1">{{__('translate.department')}}<span class="text-danger"> *</span></p>
-                        <select class="js-example-basic-multiple" multiple="multiple" name="department[]" id="department">
-                        @foreach($departments as $department)
-                            <option value="{{$department->id}}" {{$department->id==Auth::user()->department_id?'selected':''}}>{{$department->name}}</option>
-                            @endforeach
-                        </select>
-                        <span class="text-danger error" id="error-department"></span>
                     </div>
                     <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
                         <p class="mb-1">{{__('translate.role')}}<span class="text-danger"> *</span></p>
@@ -66,20 +57,16 @@
                         <input type="text" name="nic" class="form-control" id="nic" placeholder="{{__('translate.enter_nic')}}">
                     </div>
                     <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                        <p class="mb-1">{{__('translate.basic_salary')}}</p>
-                        <input type="text" name="basic_salary" class="form-control" id="basic_salary" placeholder="{{__('translate.enter_basic_salary')}}">
-                    </div>
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
                         <p class="mb-1">{{__('translate.password')}}<span class="text-danger"> *</span></p>
                         <div class="input-group">
-    <input type="password" name="password" class="form-control form-control-lg @error('password') is-invalid @enderror" id="signin-password" placeholder="{{__('translate.enter_password')}}" value="{{ old('password') }}"><button  class="btn btn-light" type="button" onclick="togglePasswordVisibility('signin-password', this)" id="button-addon2"><i class="ri-eye-off-line align-middle"></i></button>
-</div>
+                            <input type="password" name="password" class="form-control form-control-lg @error('password') is-invalid @enderror" id="signin-password" placeholder="{{__('translate.enter_password')}}" value="{{ old('password') }}"><button  class="btn btn-light" type="button" onclick="togglePasswordVisibility('signin-password', this)" id="button-addon2"><i class="ri-eye-off-line align-middle"></i></button>
+                        </div>
                         <span class="text-danger error" id="error-password"></span>
                     </div>
                     <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 material_rate_div">
                     <p class="mb-1">
                     {{__('translate.display_picture')}} <span class="text--primary">(1:1)</span>
-</p>
+                    </p>
     <label class="text-center position-relative">
         <img class="img-fluid img-thumbnail image-preview" id="imagePreview"
         src="{{ isset($user->dp) && $user->dp ? $user->dp : asset('assets/images/apps/admin.png') }}" 
@@ -109,7 +96,7 @@
     </div>
 </div>
 @endsection
-@section('script')
+@section('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
  $('#users-form').submit(function(e) {
@@ -136,7 +123,7 @@
             success: function(response) {
                 toastr.success('User Created Successfully');
                 if (response.action==='create_exit') {
-                    window.location.href='/users';
+                    window.location.href='{{route("users.index")}}';
                 } else {
                     $('#users-form')[0].reset();  
                     location.reload();

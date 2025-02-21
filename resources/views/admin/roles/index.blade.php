@@ -11,14 +11,14 @@
             <div class="d-flex justify-content-between align-items-center">
             <h5 class="card-title mb-0">Roles & Permissions</h5>
             
-            {{--@can('create-roles')--}}
+            @can('create-roles')
                 <a href="{{ route('roles.create') }}">
                     <button class="btn btn-sm btn-primary forProductType">
                         <i class="ri-add-line align-middle me-2 d-inline-block"></i>
                         <span class="text">Add Roles & Permissions</span>
                     </button>
                 </a>
-            {{--@endcan--}}
+            @endcan
         </div>
               <!-- Default Table -->
               <table class="table">

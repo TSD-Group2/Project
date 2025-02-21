@@ -1,0 +1,24 @@
+<?php
+
+return [
+    'first_name' => 'First Name',
+    'last_name' => 'Last Name',
+    'user_name' => 'User Name',
+    'role' => 'Role',
+    'code' => 'Code',
+    'email' => 'E-mail',
+    'nic' => 'Nic',
+    'display_picture' => 'Display Picture',
+    'contact' => 'Contact',
+    'password' => 'Password',
+    'enter_first_name' => 'Enter First Name',
+    'enter_last_name' => 'Enter Last Name',
+    'enter_user_name' => 'Enter User Name',
+    'enter_role' => 'Enter Role',
+    'enter_code' => 'Enter Code',
+    'enter_email' => 'Enter E-mail',
+    'enter_nic' => 'Enter Nic',
+    'enter_contact' => 'Enter Contact',
+    'enter_password' => 'Enter Password',
+    'add_user' => 'Add User',
+];
