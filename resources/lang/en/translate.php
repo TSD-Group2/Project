@@ -20,5 +20,8 @@ return [
     'enter_nic' => 'Enter Nic',
     'enter_contact' => 'Enter Contact',
     'enter_password' => 'Enter Password',
-    'add_user' => 'Add User',
+    'add_train' => 'Add Train',
+    'name' => 'Name',
+    'enter_name' => 'Enter Name',
+    'enter_code' => 'Enter Code',
 ];

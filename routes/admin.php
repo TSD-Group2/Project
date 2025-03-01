@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ForgotPasswordController;
 use App\Http\Controllers\Admin\ResetPasswordController;
 use App\Http\Controllers\Admin\RolesAndPermissionController;
+use App\Http\Controllers\Admin\TrainController;
 use App\Http\Controllers\Admin\UsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,8 @@ use Illuminate\Support\Facades\Route;
         Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
         Route::resource('roles', RolesAndPermissionController::class);
         Route::resource('users', UsersController::class);
+        Route::resource('train', TrainController::class);
+        Route::post('trains/{status}', [TrainController::class, 'status'])->name('train.status');
         Route::get('/users/ActiveUsers', [UsersController::class, 'ActiveUsers'])->name('users.activeUsers');
         Route::get('/profile', [UsersController::class, 'profile'])->name('users.profile');
         Route::post('/user-department', [UsersController::class, 'user_department_update'])->name('users.department');
