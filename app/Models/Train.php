@@ -9,10 +9,10 @@ class Train extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'type'];
-
-    public function schedules()
-    {
+    public function seats() {
+        return $this->hasMany(TrainSeat::class);
+    }
+    public function schedules() {
         return $this->hasMany(TrainSchedule::class);
     }
 }

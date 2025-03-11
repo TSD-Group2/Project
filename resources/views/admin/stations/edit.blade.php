@@ -1,31 +1,30 @@
 @extends('admin.layouts.app')
-@section('title','Add Train')
+@section('title','Edit Station')
 @section('content')
 <div class="row">
     <div class="col-xl-12">
         <div class="card custom-card mt-3">
             <div class="card-header justify-content-between">
                 <div class="card-title">
-                    Add New Train
+                    Edit Station {{$station->name}}
                 </div>
             </div>
             <div class="card-body">
             <form id="users-form" action="" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
+            <input type="hidden" id="station_id" value="{{$station->id}}">
                 <div class="row gy-2">
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                         <p class="mb-1">{{__('translate.name')}}</p>
-                        <input type="text" name="name" class="form-control" id="name" placeholder="{{__('translate.enter_name')}}">
-                        <span class="text-danger error" id="error-name"></span>
+                        <input type="text" name="name" class="form-control" id="name" value="{{$station->name}}" placeholder="{{__('translate.enter_name')}}">
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                        <p class="mb-1">{{__('translate.code')}}</p>
-                        <input type="text" name="code" class="form-control" id="code" value="{{old('code')}}" placeholder="{{__('translate.enter_code')}}">
+                        <p class="mb-1">{{__('translate.city')}}</p>
+                        <input type="text" name="city" class="form-control" id="code" value="{{$station->city}}" readonly>
                     </div>
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 text-end">
-                        <button type="reset" class="btn btn-warning">Reset</button>
-                        <button type="submit" name="action" value="create" class="btn btn-primary submit">Save</button>
-                        <button type="submit" name="action" value="create_exit" class="btn btn-success submit">Save & Exit</button>
+                        <button type="submit" name="action" value="create" class="btn btn-primary submit">Update</button>
                     </div>
                 </div>
             </form>
@@ -39,9 +38,9 @@
 <script type="text/javascript">
  $('#users-form').submit(function(e) {
         e.preventDefault();
-        var formData = new FormData(this);
-        var action = $('button[name="action"]').filter(':focus').val();
-        formData.append('action', action);
+        var stationId=$('#station_id').val();
+    console.log($('#users-form').serialize());
+    var formData = new FormData(this);
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -49,23 +48,17 @@
         });
 
         $.ajax({
-            url: "{{ route('train.store') }}",
+            url: "{{ route('station.update', ':id') }}".replace(':id', stationId),
             method: 'POST',
             data: formData,
             contentType: false,
             processData: false,
             beforeSend: function() {
-                $('.error').text('');
-                $('.input-error').removeClass('input-error');
+                
             },
             success: function(response) {
-                toastr.success('Train Created Successfully');
-                if (response.action==='create_exit') {
-                    window.location.href='{{route("train.index")}}';
-                } else {
-                    $('#users-form')[0].reset();  
-                    location.reload();
-                }
+                toastr.success('Station Updated Successfully');
+                    window.location.href='{{route("station.index")}}';
             },
             error: function(xhr, status, error) {
                 if (xhr.status === 422) {

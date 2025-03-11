@@ -24,6 +24,7 @@ return new class extends Migration
             $table->boolean('is_active')->default(true);
             $table->string('password');
             $table->string('photo')->nullable();
+            $table->string('otp')->nullable();
             $table->unsignedBigInteger('added_by')->nullable();
             $table->timestamps();
             $table->softDeletes();

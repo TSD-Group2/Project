@@ -64,7 +64,9 @@
                 if (xhr.status === 422) {
                     var errors = xhr.responseJSON.errors;
                     $.each(errors, function(key, value) {
-                        toastr.error(value[0]);
+                        $('#error-' + key).text(value[0]);
+                        $('#'+key).addClass('input-error');
+                        //toastr.error(value[0]);
                     });
                 } else {
                     toastr.error('An error occurred: ' + error, 'Error!');

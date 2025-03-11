@@ -9,15 +9,17 @@ class TrainSchedule extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['train_id', 'schedule_date'];
+    protected $fillable = ['train_id', 'schedule_date', 'departure_time'];
 
-    public function train()
-    {
+    public function train() {
         return $this->belongsTo(Train::class);
     }
 
-    public function stops()
+    public function stops() {
+        return $this->hasMany(TrainStop::class);
+    }
+    public function seats()
     {
-        return $this->hasMany(TrainStop::class)->orderBy('stop_order');
+        return $this->hasMany(TrainSeat::class,'train_schedule_id');
     }
 }

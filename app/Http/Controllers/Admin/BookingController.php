@@ -1,0 +1,162 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use App\Models\Booking;
+use App\Models\Station;
+use App\Models\TrainSchedule;
+use App\Models\TrainSeat;
+use App\Models\TrainStop;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+
+class BookingController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        $schedules = TrainSchedule::all();
+        $availableSeats = TrainSeat::where('is_booked', false)->get();
+        $stations = Station::all();
+
+        // Return the Blade view and pass the data
+        return view('admin.booking.create', compact('schedules', 'availableSeats', 'stations'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            'phone_number' => 'required|string',
+            'schedule_id' => 'required|exists:train_schedules,id',
+            'seats' => 'required|array',
+            // 'seats.*' => 'exists:train_seats,id',
+            'from_station_id' => 'required|exists:stations,id',
+            'to_station_id' => 'required|exists:stations,id',
+        ]);
+    
+        $trainSchedule = TrainSchedule::find($request->schedule_id);
+        if (!$trainSchedule) {
+            return response()->json(['message' => 'Invalid schedule ID.'], 400);
+        }
+    
+        $bookingLimit = 3;
+      
+        foreach ($request->seats as $seatId) {
+            if($seatId!=null){
+            $seat = TrainSeat::find($seatId);
+    
+            if (!$seat) {
+                return response()->json(['message' => "Seat ID {$seatId} not found."], 400);
+            }
+    
+            if ($seat->is_booked) {
+                return response()->json(['message' => "Seat {$seat->seat_number} is already booked."], 400);
+            }
+    
+            $existingBookingsCount = Booking::where('phone_number', $request->phone_number)
+                ->where('schedule_id', $trainSchedule->id)
+                ->whereDate('created_at', $trainSchedule->schedule_date)
+                ->count();
+            if ($existingBookingsCount >= $bookingLimit) {
+                return response()->json(['message' => 'Booking limit reached for this phone number on this day.'], 400);
+            }
+    
+            $booking = Booking::create([
+                'phone_number' => $request->phone_number,
+                'train_id' => $seat->trainSchedule->train_id,
+                'schedule_id' => $request->schedule_id,
+                'seat_id' => $seat->id,
+                'from_station_id' => $request->from_station_id,
+                'to_station_id' => $request->to_station_id,
+                'status' => 'booked',
+            ]);
+
+            $seat->update(['is_booked' => true]);
+            Log::info("Seat {$seat->seat_number} booked successfully.");
+        }
+    }
+    
+        return response()->json(['message' => 'Seats booked successfully.'], 200);
+    }
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
+    public function getSchedulesByDate(Request $request)
+    {
+        $schedules = TrainSchedule::where('schedule_date', $request->date)->get();
+        return response()->json(['schedules' => $schedules]);
+    }
+
+    public function getStationsBySchedule(Request $request)
+    {
+        $stations = TrainStop::where('train_schedule_id', $request->schedule_id)->get();
+        return response()->json(['stations' => $stations]);
+    }
+
+    public function getSeatsByScheduleAndStations(Request $request)
+    {
+        $scheduleId = $request->schedule_id;
+        $fromStationId = $request->from_station_id;
+        $toStationId = $request->to_station_id;
+
+        $allSeats = TrainSeat::where('train_schedule_id', $scheduleId)->get();
+
+        $bookedSeats = TrainSeat::where('train_schedule_id', $scheduleId)
+            ->whereHas('bookings', function ($query) use ($fromStationId, $toStationId) {
+                $query->where('from_station_id', '<=', $toStationId)
+                    ->where('to_station_id', '>=', $fromStationId);
+            })
+            ->pluck('id')
+            ->toArray();
+
+        $ticketPrice = TrainStop::getTicketPrice($scheduleId, $fromStationId, $toStationId);
+
+        return response()->json([
+            'seats' => $allSeats,
+            'booked_seat_ids' => $bookedSeats,
+            'price' => $ticketPrice
+        ]);
+    }
+}

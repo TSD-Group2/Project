@@ -20,14 +20,24 @@
               <i class="bi bi-circle"></i><span>Train List</span>
             </a>
           </li>
-          <li class="{{ Request::is('admin/train') ? 'active' : '' }}">
-            <a href="{{route('train.index')}}">
+          <li class="{{ Request::is('admin/station') ? 'active' : '' }}">
+            <a href="{{route('station.index')}}">
               <i class="bi bi-circle"></i><span>Station List</span>
             </a>
           </li>
-          <li class="{{ Request::is('admin/train/create') ? 'active' : '' }}">
-            <a href="{{route('train.create')}}">
+          <li class="{{ Request::is('admin/route-fee') ? 'active' : '' }}">
+            <a href="{{route('route-fee.index')}}">
+              <i class="bi bi-circle"></i><span>Route Fee List</span>
+            </a>
+          </li>
+          <li class="{{ Request::is('admin/train-schedules') ? 'active' : '' }}">
+            <a href="{{route('train-schedules.index')}}">
               <i class="bi bi-circle"></i><span>Train Schedules</span>
+            </a>
+          </li>
+          <li class="{{ Request::is('admin/bookings') ? 'active' : '' }}">
+            <a href="{{route('bookings.index')}}">
+              <i class="bi bi-circle"></i><span>Bookings</span>
             </a>
           </li>
         </ul>

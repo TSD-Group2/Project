@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title', 'Train List')
+@section('title', 'Stations List')
 @section('content')
 <div class="row">
     <div class="col-xl-12">
@@ -7,13 +7,13 @@
             <div class="card-header justify-content-between">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="card-title">
-                    Trains
+                Stations
                 </div>
                 @can('create-user')
                 <div class="prism-toggle">
-                    <a href="{{ route('train.create') }}"><button class="btn btn-sm btn-primary forProductType">
+                    <a href="{{ route('station.create') }}"><button class="btn btn-sm btn-primary forProductType">
                         <i class="ri-add-line align-middle me-2 d-inline-block"></i>
-                        <span class="text">{{__('translate.add_train')}}</span>
+                        <span class="text">{{__('translate.add_station')}}</span>
                     </button></a>
                 </div>
                 @endcan
@@ -26,13 +26,13 @@
                                         <tr>
                                             <th scope="col">#</th>
                                             <th scope="col">Name</th>
-                                            <th scope="col">Code</th>
+                                            <th scope="col">City</th>
                                             <th scope="col">Status</th>
                                             <th scope="col" class="text-right">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @include('admin.trains.filter')
+                                        @include('admin.stations.filter')
                                     </tbody>
                                 </table>
                             </div>
@@ -46,18 +46,18 @@
 <script src="{{ asset('js/common/crud_and_pagination.js') }}"></script>
 <script type="text/javascript">
     handleCrud(
-        '{{ route('train.create') }}',
-        '{{ route('train.store') }}',
-        '{{ route('train.show', ':id') }}',
-        '{{ route('train.edit', ':id') }}',
-        '{{ route('train.update', ':id') }}',
-        '{{ route('train.destroy', ':id') }}',
+        '{{ route('station.create') }}',
+        '{{ route('station.store') }}',
+        '{{ route('station.show', ':id') }}',
+        '{{ route('station.edit', ':id') }}',
+        '{{ route('station.update', ':id') }}',
+        '{{ route('station.destroy', ':id') }}',
         'tbody',
         {
-            create: 'Add Train',
-            edit: 'Update Train'
+            create: 'Add Station',
+            edit: 'Update Station'
         },
-        '{{ route('train.index') }}',
+        '{{ route('station.index') }}',
         '{{ csrf_token() }}'
     );
     function Change_status(status,id){
@@ -68,7 +68,7 @@
             }
         });
         $.ajax({
-            url: "{{ route('train.status', ':status') }}".replace(':status', id),
+            url: "{{ route('station.status', ':status') }}".replace(':status', id),
             method: 'POST',
             data: {
                 id:id,
@@ -78,7 +78,7 @@
                 
             },
             success: function(response) {
-                toastr.success('Train Status Updated Successfully');
+                toastr.success('Station Status Updated Successfully');
             },
             error: function(xhr, status, error) {
                 if (xhr.status === 403) {

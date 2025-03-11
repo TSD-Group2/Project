@@ -1,12 +1,12 @@
 @extends('admin.layouts.app')
-@section('title','Add Train')
+@section('title','Add Stations')
 @section('content')
 <div class="row">
     <div class="col-xl-12">
         <div class="card custom-card mt-3">
             <div class="card-header justify-content-between">
                 <div class="card-title">
-                    Add New Train
+                    Add New Station
                 </div>
             </div>
             <div class="card-body">
@@ -19,8 +19,8 @@
                         <span class="text-danger error" id="error-name"></span>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                        <p class="mb-1">{{__('translate.code')}}</p>
-                        <input type="text" name="code" class="form-control" id="code" value="{{old('code')}}" placeholder="{{__('translate.enter_code')}}">
+                        <p class="mb-1">{{__('translate.city')}}</p>
+                        <input type="text" name="city" class="form-control" id="city" value="{{old('city')}}" placeholder="{{__('translate.enter_city')}}">
                     </div>
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 text-end">
                         <button type="reset" class="btn btn-warning">Reset</button>
@@ -49,7 +49,7 @@
         });
 
         $.ajax({
-            url: "{{ route('train.store') }}",
+            url: "{{ route('station.store') }}",
             method: 'POST',
             data: formData,
             contentType: false,
@@ -59,9 +59,9 @@
                 $('.input-error').removeClass('input-error');
             },
             success: function(response) {
-                toastr.success('Train Created Successfully');
+                toastr.success('Station Created Successfully');
                 if (response.action==='create_exit') {
-                    window.location.href='{{route("train.index")}}';
+                    window.location.href='{{route("station.index")}}';
                 } else {
                     $('#users-form')[0].reset();  
                     location.reload();

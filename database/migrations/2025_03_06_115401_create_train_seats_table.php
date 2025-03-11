@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('train_stops', function (Blueprint $table) {
+        Schema::create('train_seats', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('train_schedule_id');
             $table->foreign('train_schedule_id')->references('id')->on('train_schedules')->onDelete('cascade');
-            $table->unsignedBigInteger('station_id');
-            $table->foreign('station_id')->references('id')->on('stations')->onDelete('cascade');
-            $table->time('arrival_time')->nullable();
-            $table->time('departure_time')->nullable();
-            $table->decimal('ticket_price', 8, 2);
+            $table->integer('seat_number');
+            $table->boolean('is_booked')->default(false);
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('train_stops');
+        Schema::dropIfExists('train_seats');
     }
 };
