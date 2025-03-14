@@ -42,7 +42,6 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/getSchedulesByDate', [BookingController::class, 'getSchedulesByDate'])->name('getSchedulesByDate');
     Route::get('/getStationsBySchedule', [BookingController::class, 'getStationsBySchedule'])->name('getStationsBySchedule');
     Route::get('/getSeatsByScheduleAndStations', [BookingController::class, 'getSeatsByScheduleAndStations'])->name('getSeatsByScheduleAndStations');
-    // Route::get('/ticket-verification/{id}',[TicketVerifyController::class,'verify_ticket'])->name('ticket-verify');
     Route::get('ticket-verification/{id}', [TicketVerifyController::class, 'verifyTicket']);
     Route::post('ticket-verify/{id}', [TicketVerifyController::class, 'updateVerification']);
     Route::resource('/ticket-verify',TicketVerifyController::class);

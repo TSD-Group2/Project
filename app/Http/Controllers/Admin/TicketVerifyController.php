@@ -19,30 +19,6 @@ class TicketVerifyController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function verify_ticket(Request $request, $id)
-    {
-        $booking = Booking::with([
-            'trainSchedule.train',
-            'fromStation',
-            'toStation',
-            'seat'
-        ])->find($id);
-
-        if (!$booking) {
-            return response()->json(['error' => 'Booking not found'], 404);
-        }
-        $data = [
-            'id' => $booking->id,
-            'phone_number' => $booking->phone_number,
-            'fromStation' => $booking->fromStation->name,
-            'toStation' => $booking->toStation->name,
-            'train' => $booking->trainSchedule->train->name,
-            'date' => $booking->trainSchedule->schedule_date,
-            'seat' => $booking->seat->seat_number,
-        ];
-
-        return response()->json($data);
-    }
     public function verifyTicket($id)
     {
         $booking = Booking::find($id);

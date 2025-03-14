@@ -109,7 +109,7 @@ input[type="button"], input[type="submit"], button {
                         $('#ticket-status').text(data.verified ? "Verified" : "Not Verified");
 
                         if (!data.verified) {
-                            $('#ticket-status').text("Verified").removeClass("badge-danger").addClass("badge-success");
+                            $('#verify-ticket').show();
                         } else {
                             $('#verify-ticket').hide();
                         }
