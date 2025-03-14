@@ -35,4 +35,6 @@ return [
     'to_station' => 'To Station',
     'from_station' => 'From Station',
     'fare' => 'Fare',
+    'mobile' => 'Mobile',
+    'schedule' => 'Schedule',
 ];

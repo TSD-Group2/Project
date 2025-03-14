@@ -54,8 +54,8 @@ class BookingController extends Controller
             return response()->json(['message' => 'Invalid schedule ID.'], 400);
         }
 
-        $bookingLimit = 3;
-
+        $bookingLimit = 5;
+        $bookingId=[];
         foreach ($request->seats as $seatId) {
             if ($seatId != null) {
                 $seat = TrainSeat::find($seatId);
@@ -87,11 +87,12 @@ class BookingController extends Controller
                 ]);
 
                 $seat->update(['is_booked' => true]);
+                $bookingId[]=$booking->id;
                 Log::info("Seat {$seat->seat_number} booked successfully.");
             }
         }
 
-        return response()->json(['message' => 'Seats booked successfully.'], 200);
+        return response()->json(['message' => 'Seats booked successfully.','bookingIds'=>$bookingId], 200);
     }
     /**
      * Display the specified resource.

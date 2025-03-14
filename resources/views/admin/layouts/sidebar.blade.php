@@ -18,7 +18,8 @@
         </a>
         <ul id="forms-nav" class="nav-content collapse {{ Request::is('admin/train') || Request::is('admin/train/create') || Request::is('admin/station') || Request::is('admin/station/create') 
         || Request::is('admin/route-fee') || Request::is('admin/route-fee/create') || Request::is('admin/train-schedules') || 
-        Request::is('admin/train-schedules/create') || Request::is('admin/bookings/create') || Request::is('admin/bookings/create') ? ' show' : '' }}" data-bs-parent="#sidebar-nav">
+        Request::is('admin/train-schedules/create') || Request::is('admin/bookings') || Request::is('admin/bookings/create') || 
+        Request::is('admin/ticket-verify') || Request::is('admin/ticket-verify/create') ? ' show' : '' }}" data-bs-parent="#sidebar-nav">
           <li class="{{ Request::is('admin/train') ? 'active' : '' }}">
             <a href="{{route('train.index')}}">
               <i class="bi bi-circle"></i><span>Train List</span>
@@ -42,6 +43,11 @@
           <li class="{{ Request::is('admin/bookings') ? 'active' : '' }}">
             <a href="{{route('bookings.index')}}">
               <i class="bi bi-circle"></i><span>Bookings</span>
+            </a>
+          </li>
+          <li class="{{ Request::is('admin/ticket-verify') ? 'active' : '' }}">
+            <a href="{{route('ticket-verify.index')}}">
+              <i class="bi bi-circle"></i><span>Verify Tickets</span>
             </a>
           </li>
         </ul>

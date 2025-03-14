@@ -7,10 +7,12 @@
     "require": {
         "php": "^8.1",
         "brian2694/laravel-toastr": "^5.59",
+        "endroid/qr-code": "^6.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
+        "picqer/php-barcode-generator": "^3.2",
         "spatie/laravel-permission": "^6.10"
     },
     "require-dev": {

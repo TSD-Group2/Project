@@ -90,6 +90,7 @@
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                             <p class="mb-1">{{__('translate.mobile')}}</p>
                             <input type="number" id="phone_number" class="form-control" name="phone_number" required>
+                            <input type="hidden" id="price" class="form-control" name="price" required>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                             <p class="mb-1">{{__('translate.date')}}</p>
@@ -226,6 +227,7 @@
 
                     $('#ticket-price').text('');
                     $('#ticket-price').text('LKR.' + response.price);
+                    $('#price').val(response.price);
                     $('#seat-layout').show();
                 }
 
@@ -240,7 +242,7 @@
             let seat = seatButton.closest('.seat');
             let seatId = seat.data('seat-id');
             let seatNumber = seat.data('seat-number');
-
+            let price = parseFloat($('#price').val()) || 0;
             if (seat.hasClass('selected')) {
                 seat.removeClass('selected');
                 selectedSeats = selectedSeats.filter(seat => seat !== seatId);
@@ -248,6 +250,10 @@
                 seat.addClass('selected');
                 selectedSeats.push(seatId);
             }
+            let selectedSeatsCount = $('.selected').length;
+            
+            $('#ticket-price').text('LKR.' + parseFloat(price * selectedSeatsCount).toFixed(2));
+
             // $('#seats').val(selectedSeats);
         });
 
@@ -280,15 +286,19 @@
                 success: function(response) {
                     Swal.fire({
                         title: 'Success',
-                        text: "Seats booked successfully!",
+                        text: "Seats booked successfully! Print The Tickets?",
                         icon: 'success',
                         showCancelButton: true,
                         confirmButtonText: 'Yes',
                         cancelButtonColor: '#000',
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            location.reload();
-                        }
+                                openPrintTab(response.bookingIds, () => {
+                                    location.reload();
+                                });
+                            } else {
+                                location.reload();
+                            }
                     });
 
                 },
@@ -297,6 +307,30 @@
                 }
             });
         });
+        function openPrintTab(bookingIds, callback) {
+            if (!Array.isArray(bookingIds)) {
+        console.error("Invalid booking IDs. Expected an array.");
+        return;
+    }
+
+    const bookingIdsParam = bookingIds.join(','); // Convert array to comma-separated string
+
+    let print_url = "{{ route('print.ticket', ['id' => ':id']) }}";
+    print_url = print_url.replace(':id', encodeURIComponent(bookingIdsParam)); 
+
+    const printWindow = window.open(print_url, '_blank');
+    if (printWindow) {
+        const checkIfLoaded = setInterval(() => {
+            if (printWindow.closed) {
+                clearInterval(checkIfLoaded);
+                callback();
+            }
+        }, 500);
+    } else {
+        console.error("Failed to open the print view. Make sure pop-ups are not blocked.");
+        callback();
+    }
+}
     });
 </script>
 
