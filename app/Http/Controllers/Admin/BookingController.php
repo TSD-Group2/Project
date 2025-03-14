@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
+use App\Models\RouteFee;
 use App\Models\Station;
 use App\Models\TrainSchedule;
 use App\Models\TrainSeat;
@@ -47,49 +48,49 @@ class BookingController extends Controller
             'from_station_id' => 'required|exists:stations,id',
             'to_station_id' => 'required|exists:stations,id',
         ]);
-    
+
         $trainSchedule = TrainSchedule::find($request->schedule_id);
         if (!$trainSchedule) {
             return response()->json(['message' => 'Invalid schedule ID.'], 400);
         }
-    
-        $bookingLimit = 3;
-      
-        foreach ($request->seats as $seatId) {
-            if($seatId!=null){
-            $seat = TrainSeat::find($seatId);
-    
-            if (!$seat) {
-                return response()->json(['message' => "Seat ID {$seatId} not found."], 400);
-            }
-    
-            if ($seat->is_booked) {
-                return response()->json(['message' => "Seat {$seat->seat_number} is already booked."], 400);
-            }
-    
-            $existingBookingsCount = Booking::where('phone_number', $request->phone_number)
-                ->where('schedule_id', $trainSchedule->id)
-                ->whereDate('created_at', $trainSchedule->schedule_date)
-                ->count();
-            if ($existingBookingsCount >= $bookingLimit) {
-                return response()->json(['message' => 'Booking limit reached for this phone number on this day.'], 400);
-            }
-    
-            $booking = Booking::create([
-                'phone_number' => $request->phone_number,
-                'train_id' => $seat->trainSchedule->train_id,
-                'schedule_id' => $request->schedule_id,
-                'seat_id' => $seat->id,
-                'from_station_id' => $request->from_station_id,
-                'to_station_id' => $request->to_station_id,
-                'status' => 'booked',
-            ]);
 
-            $seat->update(['is_booked' => true]);
-            Log::info("Seat {$seat->seat_number} booked successfully.");
+        $bookingLimit = 3;
+
+        foreach ($request->seats as $seatId) {
+            if ($seatId != null) {
+                $seat = TrainSeat::find($seatId);
+
+                if (!$seat) {
+                    return response()->json(['message' => "Seat ID {$seatId} not found."], 400);
+                }
+
+                if ($seat->is_booked) {
+                    return response()->json(['message' => "Seat {$seat->seat_number} is already booked."], 400);
+                }
+
+                $existingBookingsCount = Booking::where('phone_number', $request->phone_number)
+                    ->where('schedule_id', $trainSchedule->id)
+                    ->whereDate('created_at', $trainSchedule->schedule_date)
+                    ->count();
+                if ($existingBookingsCount >= $bookingLimit) {
+                    return response()->json(['message' => 'Booking limit reached for this phone number on this day.'], 400);
+                }
+
+                $booking = Booking::create([
+                    'phone_number' => $request->phone_number,
+                    'train_id' => $seat->trainSchedule->train_id,
+                    'schedule_id' => $request->schedule_id,
+                    'seat_id' => $seat->id,
+                    'from_station_id' => $request->from_station_id,
+                    'to_station_id' => $request->to_station_id,
+                    'status' => 'booked',
+                ]);
+
+                $seat->update(['is_booked' => true]);
+                Log::info("Seat {$seat->seat_number} booked successfully.");
+            }
         }
-    }
-    
+
         return response()->json(['message' => 'Seats booked successfully.'], 200);
     }
     /**
@@ -150,13 +151,36 @@ class BookingController extends Controller
             })
             ->pluck('id')
             ->toArray();
-
-        $ticketPrice = TrainStop::getTicketPrice($scheduleId, $fromStationId, $toStationId);
-
+        $ticketPrice = $this->getTicketPrice($fromStationId, $toStationId);
+        if (!$ticketPrice) {
+            return response()->json(['error' => 'No route fee found for this route.'], 404);
+        }
         return response()->json([
             'seats' => $allSeats,
             'booked_seat_ids' => $bookedSeats,
             'price' => $ticketPrice
         ]);
     }
+    private function getTicketPrice($from_station_id, $to_station_id)
+    {
+        $totalFare = 0;
+        $currentStation = $from_station_id;
+    
+        while ($currentStation != $to_station_id) {
+            $nextRoute = RouteFee::where('from_station_id', $currentStation)
+                ->where('to_station_id', '<=', $to_station_id)
+                ->orderBy('to_station_id')
+                ->first();
+    
+            if (!$nextRoute) {
+                return null;
+            }
+    
+            $totalFare += $nextRoute->ticket_price;
+            $currentStation = $nextRoute->to_station_id;
+        }
+    
+        return $totalFare;
+    }
+
 }

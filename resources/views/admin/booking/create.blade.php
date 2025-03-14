@@ -127,20 +127,20 @@
                     </div>
 
                     <div class="row">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
 
-                        <div id="seat-layout" class="seat-layout" style="display: none;">
-                            <p>Select Your Seat:</p>
-                            <div id="seats-container"></div>
-                        </div>
+                            <div id="seat-layout" class="seat-layout" style="display: none;">
+                                <p>Select Your Seat:</p>
+                                <div id="seats-container"></div>
+                            </div>
                         </div>
 
                     </div>
-                    <div class="row">
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                    <div class="row mt-2">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
 
-                        <button type="submit" class="btn btn-primary submit">Book Seat</button>
-                    </div>
+                            <button type="submit" class="btn btn-primary submit">Book Seat</button>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -214,18 +214,18 @@
 
                         let seatHtml = `
             <div class="${seatClass}" data-seat-id="${seat.id}" data-seat-number="${seat.seat_number}">
-    <input type="checkbox" class="seat-checkbox" data-seat-id="${seat.id}" id="seat-${seat.id}" name="seats[]" value="${seat.id}" style="display: none;" ${isBooked ? 'disabled' : ''}>
+                    <input type="checkbox" class="seat-checkbox" data-seat-id="${seat.id}" id="seat-${seat.id}" name="seats[]" value="${seat.id}" style="display: none;" ${isBooked ? 'disabled' : ''}>
 
-    <label for="seat-${seat.id}" class="${isBooked ? 'booked' : ''}" ${isBooked ? 'disabled' : ''}>
-        ${seat.seat_number}
-    </label>
-</div>
+                    <label for="seat-${seat.id}" class="${isBooked ? 'booked' : ''}" ${isBooked ? 'disabled' : ''}>
+                        ${seat.seat_number}
+                    </label>
+            </div>`;
 
-        `;
-
-                        rowDiv.append(seatHtml); 
+                        rowDiv.append(seatHtml);
                     });
 
+                    $('#ticket-price').text('');
+                    $('#ticket-price').text('LKR.' + response.price);
                     $('#seat-layout').show();
                 }
 
@@ -233,7 +233,7 @@
         });
     });
     $(document).ready(function() {
-        let selectedSeats = []; 
+        let selectedSeats = [];
 
         $(document).on('click', '.seat-checkbox', function() {
             let seatButton = $(this);
@@ -252,10 +252,16 @@
         });
 
         $('#booking-form').submit(function(e) {
-            e.preventDefault(); 
+            e.preventDefault();
 
             if (selectedSeats.length === 0) {
-                alert('Please select at least one seat!');
+                Swal.fire({
+                    title: 'Operation Failed?',
+                    text: "Please select at least one seat!.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    cancelButtonColor: '#000',
+                });
                 return;
             }
 
@@ -272,9 +278,19 @@
                 contentType: false,
                 processData: false,
                 success: function(response) {
-                    alert('Seats booked successfully!');
-                    $('#booking-form')[0].reset();
-                    selectedSeats = [];
+                    Swal.fire({
+                        title: 'Success',
+                        text: "Seats booked successfully!",
+                        icon: 'success',
+                        showCancelButton: true,
+                        confirmButtonText: 'Yes',
+                        cancelButtonColor: '#000',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            location.reload();
+                        }
+                    });
+
                 },
                 error: function(xhr, status, error) {
                     alert('Error booking seats: ' + error);

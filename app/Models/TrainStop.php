@@ -11,7 +11,7 @@ class TrainStop extends Model
 
     use HasFactory;
 
-    protected $fillable = ['train_schedule_id', 'station_id', 'arrival_time', 'departure_time', 'fare'];
+    protected $fillable = ['train_schedule_id', 'station_id', 'arrival_time', 'departure_time'];
 
     public function schedule()
     {
