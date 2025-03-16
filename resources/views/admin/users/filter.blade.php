@@ -13,19 +13,25 @@
     </td>
     <td class="text-right">
     {{--@if($user->roles()->first()->name != 'Super Admin')--}}
+    @can('edit-user')
         <a href="{{route('users.edit',$user->id)}}">
         <button class="btn btn-icon btn-secondary-transparent rounded-pill btn-wave">
             <i class="ri-edit-line"></i>
         </button></a>
+        @endcan
     {{--@endif--}}
+    @can('view-user')
         <a href="{{route('users.show',$user->id)}}">
         <button class="btn btn-icon btn-warning-transparent rounded-pill btn-wave">
             <i class="ri-eye-line"></i>
         </button></a>
+        @endcan
         @if($user->roles()->first()->name != 'Super Admin')
+        @can('delete-user')
             <button type="submit" onclick="destroy({{$user->id}})" class="btn btn-icon btn-danger-transparent rounded-pill btn-wave">
             <i class="ri-delete-bin-line"></i>
         </button>
+        @endcan
         @endif
     </td>
 </tr>

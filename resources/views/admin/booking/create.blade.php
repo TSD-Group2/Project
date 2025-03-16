@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title','Add Schedule')
+@section('title','Add Booking')
 <style>
     #seat-layout {
         display: flex;
@@ -77,7 +77,7 @@
         <div class="card custom-card mt-3">
             <div class="card-header justify-content-between">
                 <div class="card-title">
-                    Add New Schedule
+                    Add Booking
                 </div>
             </div>
             <div class="card-body">

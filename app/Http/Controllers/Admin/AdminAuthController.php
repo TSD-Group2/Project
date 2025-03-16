@@ -44,10 +44,10 @@ class AdminAuthController extends Controller
      */
     public function logout(Request $request)
     {
-        $user = Auth::guard('admin')->user();
+        $user = Auth::user();
         // $user->last_logout = now();
         $user->save();
-        Auth::guard('admin')->logout();
+        Auth::logout();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();

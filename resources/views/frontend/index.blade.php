@@ -19,20 +19,6 @@
             <div class="box-booking">
               <form class="rd-form rd-mailform booking-form">
                 <div>
-                  <p class="booking-title">Name</p>
-                  <div class="form-wrap">
-                    <input class="form-input" id="booking-name" type="text" name="name" data-constraints="">
-                    <label class="form-label" for="booking-name">Your name</label>
-                  </div>
-                </div>
-                <div>
-                  <p class="booking-title">Phone</p>
-                  <div class="form-wrap">
-                    <input class="form-input" id="booking-phone" type="text" name="phone" data-constraints="@Numeric">
-                    <label class="form-label" for="booking-phone">Your phone number</label>
-                  </div>
-                </div>
-                <div>
                   <p class="booking-title">Date</p>
                   <div class="form-wrap form-wrap-icon"><span class="icon mdi mdi-calendar-text"></span>
                     <input class="form-input" id="booking-date" type="text" name="date" data-constraints="" data-time-picker="date">
@@ -40,21 +26,34 @@
                 </div>
                 <div>
                   <p class="booking-title">no. of people</p>
+                  <div class="form-wrap form-wrap-icon">
+                    <input class="form-input" id="booking-date" type="number" name="date" data-constraints="">
+                  </div>
+                </div>
+                <div>
+                  <p class="booking-title">Destination From</p>
                   <div class="form-wrap">
-                    <select data-placeholder="2">
+                    <select>
                       <option label="placeholder"></option>
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                      <option>6</option>
-                      <option>7</option>
+                      @foreach($stations as $station)
+                                <option value="{{$station->id}}">{{$station->name}}</option>
+                      @endforeach
                     </select>
                   </div>
                 </div>
                 <div>
-                  <button class="button button-lg button-gray-600" type="submit">Check availability</button>
+                  <p class="booking-title">Destination To</p>
+                  <div class="form-wrap">
+                    <select>
+                      <option label="placeholder"></option>
+                      @foreach($stations as $station)
+                                <option value="{{$station->id}}">{{$station->name}}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                </div>
+                <div>
+                  <button class="button button-sm button-gray-600" type="submit">availability</button>
                 </div>
               </form>
             </div>

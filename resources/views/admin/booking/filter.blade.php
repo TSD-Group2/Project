@@ -5,13 +5,17 @@
                 <td>{{ $train_schedule->schedule_date }}</td>
                 <td>{{ $train_schedule->departure_time }}</td>
     <td class="text-right">
+        @can('edit-trains-schedules')
         <a href="{{route('train-schedules.edit',$train_schedule->id)}}">
         <button class="btn btn-icon btn-secondary-transparent rounded-pill btn-wave">
             <i class="ri-edit-line"></i>
         </button></a>
+        @endcan
+        @can('delete-trains-schedules')
         <button type="submit" onclick="destroy({{$train_schedule->id}})" class="btn btn-icon btn-danger-transparent rounded-pill btn-wave">
             <i class="ri-delete-bin-line"></i>
         </button>
+        @endcan
     </td>
 </tr>
 @empty

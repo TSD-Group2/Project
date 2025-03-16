@@ -9,7 +9,7 @@
                 <div class="card-title">
                 Stations
                 </div>
-                @can('create-user')
+                @can('create-stations')
                 <div class="prism-toggle">
                     <a href="{{ route('station.create') }}"><button class="btn btn-sm btn-primary forProductType">
                         <i class="ri-add-line align-middle me-2 d-inline-block"></i>

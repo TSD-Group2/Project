@@ -24,6 +24,27 @@ class PermissionGroupSeeder extends Seeder
                 'name'=>'permissions'
             ],
             [
+                'name'=>'stations'
+            ],
+            [
+                'name'=>'trains'
+            ],
+            [
+                'name'=>'route-fee'
+            ],
+            [
+                'name'=>'trains-schedules'
+            ],
+            [
+                'name'=>'booking'
+            ],
+            [
+                'name'=>'ticket-verifying'
+            ],
+            [
+                'name'=>'reports'
+            ],
+            [
                 'name'=>'dashboard'
             ],
             [

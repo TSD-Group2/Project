@@ -32,9 +32,11 @@ return [
     'departure_time' => 'Departure Time',
     'date' => 'Date',
     'add_route_fee' => 'Route Fee',
+    'add_user' => 'Add User',
     'to_station' => 'To Station',
     'from_station' => 'From Station',
     'fare' => 'Fare',
     'mobile' => 'Mobile',
     'schedule' => 'Schedule',
+    'enter_role_name' => 'Enter Role Name',
 ];

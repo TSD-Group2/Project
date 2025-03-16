@@ -9,13 +9,17 @@
 </div>
     </td>
     <td class="text-right">
+    @can('edit-stations')
         <a href="{{route('station.edit',$station->id)}}">
         <button class="btn btn-icon btn-secondary-transparent rounded-pill btn-wave">
             <i class="ri-edit-line"></i>
         </button></a>
+        @endcan    
+        @can('delete-stations')
         <button type="submit" onclick="destroy({{$station->id}})" class="btn btn-icon btn-danger-transparent rounded-pill btn-wave">
             <i class="ri-delete-bin-line"></i>
         </button>
+        @endcan
     </td>
 </tr>
 @empty

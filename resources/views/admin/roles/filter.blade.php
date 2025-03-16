@@ -17,13 +17,17 @@
     </td>
 
     <td class="text-right">
+    @can('edit-roles')
         <a href="{{route('roles.edit',$role->id)}}">
         <button class="btn btn-icon btn-secondary-transparent rounded-pill btn-wave">
             <i class="ri-edit-line"></i>
         </button></a>
+        @endcan
+        @can('delete-roles')
             <button type="submit" onclick="destroy({{$role->id}})" class="btn btn-icon btn-danger-transparent rounded-pill btn-wave">
             <i class="ri-delete-bin-line"></i>
         </button>
+        @endcan
     </td>
 </tr>
 @empty

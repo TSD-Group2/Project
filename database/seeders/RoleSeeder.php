@@ -15,7 +15,7 @@ class RoleSeeder extends Seeder
     public function run(): void
     {
         $SuperAdminRole = Role::create(['name' => 'Super Admin', 'guard_name' => 'web']);
-        $AdminRole = Role::create(['name' => 'Admin', 'guard_name' => 'web']);
+        $AdminRole = Role::create(['name' => 'Ticket Checker', 'guard_name' => 'web']);
  
         $permissions = Permission::all();
  

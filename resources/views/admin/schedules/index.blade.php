@@ -9,7 +9,7 @@
                 <div class="card-title">
                 Train Schedules
                 </div>
-                @can('create-user')
+                @can('create-trains-schedules')
                 <div class="prism-toggle">
                     <a href="{{ route('train-schedules.create') }}"><button class="btn btn-sm btn-primary forProductType">
                         <i class="ri-add-line align-middle me-2 d-inline-block"></i>
