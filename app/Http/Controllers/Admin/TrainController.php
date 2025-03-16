@@ -13,6 +13,14 @@ class TrainController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('permission:view-trains')->only(['index', 'show']);
+        $this->middleware('permission:create-trains')->only(['create', 'store']);
+        $this->middleware('permission:delete-trains')->only(['destroy']);
+        $this->middleware('permission:edit-trains')->only(['edit', 'update']);
+    }
     public function index(Request $request)
     {
         if ($request->ajax()) {

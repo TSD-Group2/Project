@@ -29,9 +29,8 @@
 
                     <div class="card-body p-5">
                     <div class="d-flex justify-content-center align-items-center mb-4">
-                        <a href="/">
-                            <img src="{{ asset('assets/images/brand-logos/logo-color.png')}}" style="width: 100%;height:auto;" alt="logo" class="desktop-logo">
-                        </a>
+                    <h5 class="card-title text-center pb-0 fs-4">Reset Password</h5>
+
                     </div>
                         <div class="row gy-3">
                             <div class="col-xl-12">
@@ -66,7 +65,7 @@
                 </div>
             </div>
 
-            <div class="credits">
+            <div class="credits" style="color:white;">
                 Designed by MSCIT TEAM PROJECT GROUP 02
             </div>
 

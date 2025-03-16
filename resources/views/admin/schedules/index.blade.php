@@ -20,7 +20,7 @@
             </div>
             </div>
             <div class="card-body">
-                            <div class="table">
+                            <div class="table table-responsive">
                                 <table class="table text-nowrap" style="width: 100%;">
                                     <thead>
                                         <tr>

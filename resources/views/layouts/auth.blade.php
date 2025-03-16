@@ -31,7 +31,7 @@
 
 </head>
 
-<body>
+<body style="background: radial-gradient(circle, #1b6cd8, #629de9);">
     <main>
         <div class="container">
             @yield('content')

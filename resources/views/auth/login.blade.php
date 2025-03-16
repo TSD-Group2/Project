@@ -51,7 +51,7 @@
                     </div>
                 </div>
 
-                <div class="credits">
+                <div class="credits" style="color:white;">
                     Designed by MSCIT TEAM PROJECT GROUP 02
                 </div>
 

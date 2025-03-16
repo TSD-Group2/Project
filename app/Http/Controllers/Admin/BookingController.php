@@ -17,6 +17,14 @@ class BookingController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('permission:view-booking')->only(['index', 'show']);
+        $this->middleware('permission:create-booking')->only(['create', 'store']);
+        $this->middleware('permission:delete-booking')->only(['destroy']);
+        $this->middleware('permission:edit-booking')->only(['edit', 'update']);
+    }
     public function index()
     {
         //

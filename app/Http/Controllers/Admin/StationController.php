@@ -13,6 +13,14 @@ class StationController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('permission:view-stations')->only(['index', 'show']);
+        $this->middleware('permission:create-stations')->only(['create', 'store']);
+        $this->middleware('permission:delete-stations')->only(['destroy']);
+        $this->middleware('permission:edit-stations')->only(['edit', 'update']);
+    }
     public function index(Request $request)
     {
         if ($request->ajax()) {

@@ -2,7 +2,7 @@
 @section('title', 'Users List')
 @section('content')
 <div class="row">
-    <div class="col-xl-12">
+    <div class="col-md-12 col-sm-12 col-xl-12">
         <div class="card">
             <div class="card-header justify-content-between">
             <div class="d-flex justify-content-between align-items-center">
@@ -20,7 +20,7 @@
             </div>
             </div>
             <div class="card-body">
-                            <div class="table">
+                            <div class="table table-responsive">
                                 <table class="table text-nowrap" style="width: 100%;">
                                     <thead>
                                         <tr>
