@@ -19,7 +19,6 @@ return new class extends Migration
             $table->foreign('station_id')->references('id')->on('stations')->onDelete('cascade');
             $table->time('arrival_time')->nullable();
             $table->time('departure_time')->nullable();
-            $table->decimal('ticket_price', 8, 2);
             $table->timestamps();
         });
     }
