@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\PrintController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
@@ -23,4 +24,11 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about-us', [HomeController::class, 'aboutus'])->name('aboutus');
 Route::get('/contact-us', [HomeController::class, 'contact_us'])->name('contact-us');
 Route::get('/privacy-policy', [HomeController::class, 'privacy_policy'])->name('privacy-policy');
+Route::get('/check-seats', [HomeController::class, 'getSchedulesByDate'])->name('getSchedulesByDateFront');
+Route::get('/booking', [HomeController::class, 'bookingCreate'])->name('bookingfront');
+Route::post('/front-booking', [HomeController::class, 'bookingStore'])->name('bookingStore');
+Route::post('/sendOtp', [HomeController::class, 'sendOtp'])->name('sendOtp');
+Route::post('verifyOtp', [HomeController::class, 'verifyOtp'])->name('verifyOtp');
+Route::get('/getSeatsByScheduleAndStationsfront', [HomeController::class, 'getSeatsByScheduleAndStationsfront'])->name('getSeatsByScheduleAndStationsfront');
+Route::get('print/{id}', [PrintController::class, 'Printfront'])->name('front-print.ticket');
 

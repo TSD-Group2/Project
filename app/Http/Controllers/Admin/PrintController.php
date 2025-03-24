@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
+use Barryvdh\DomPDF\PDF;
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Writer\PngWriter;
 use Illuminate\Http\Request;
@@ -34,6 +36,28 @@ class PrintController extends Controller
             return $booking;
         });
         return view('admin.print.print-ticket', compact('bookings'));
+    }
+    public function Printfront(Request $request, $id)
+    {
+        $bookingIds = explode(',', $id);
+        $bookings = Booking::whereIn('id', $bookingIds)->get();
+        $generator = new BarcodeGeneratorPNG();
+    
+        $bookings = $bookings->map(function ($booking) use ($generator) {
+            $barcode = $generator->getBarcode($booking->id, BarcodeGeneratorPNG::TYPE_CODE_128);
+            $booking->barcode = base64_encode($barcode);
+    
+            $url = $booking->id;
+            $qrCode = new QrCode($url);
+            $writer = new PngWriter();
+            $image = $writer->write($qrCode);
+            $booking->qr = base64_encode($image->getString());
+
+            return $booking;
+        });
+
+        $pdf = FacadePdf::loadView('frontend.print-ticket-front', compact('bookings'));
+        return $pdf->download('tickets.pdf');
     }
 
     /**

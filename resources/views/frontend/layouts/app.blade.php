@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
-    
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Fonts -->
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Poppins:300,300i,400,500,600,700,800,900,900i%7CPT+Serif:400,700">
     
@@ -14,6 +15,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/fonts.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css')}}">
 
     <style>
         .ie-panel {
@@ -38,6 +40,7 @@
     @stack('styles')
 </head>
 <body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <div class="ie-panel">
         <a href="http://windows.microsoft.com/en-US/internet-explorer/">
@@ -68,12 +71,10 @@
     </div>
 
     <div class="snackbars" id="form-output-global"></div>
-
     <!-- Scripts -->
     <script src="{{ asset('frontend/js/core.min.js') }}"></script>
     <script src="{{ asset('frontend/js/script.js') }}"></script>
-
-    @stack('scripts')
+    @yield('scripts')
 
 </body>
 </html>
