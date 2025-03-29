@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title', 'Train Schedules List')
+@section('title', 'Train Booking List')
 @section('content')
 <div class="row">
     <div class="col-xl-12">
@@ -7,13 +7,13 @@
             <div class="card-header justify-content-between">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="card-title">
-                Train Schedules
+                Train Booking List
                 </div>
                 @can('create-booking')
                 <div class="prism-toggle">
-                    <a href="{{ route('train-schedules.create') }}"><button class="btn btn-sm btn-primary forProductType">
+                    <a href="{{ route('bookings.create') }}"><button class="btn btn-sm btn-primary forProductType">
                         <i class="ri-add-line align-middle me-2 d-inline-block"></i>
-                        <span class="text">{{__('translate.add_schedule')}}</span>
+                        <span class="text">Add Booking</span>
                     </button></a>
                 </div>
                 @endcan
@@ -25,14 +25,17 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>
-                                            <th>Train</th>
+                                            <th>Train Name</th>
+                                            <th>Seat No</th>
+                                            <th>Phone</th>
+                                            <th>From</th>
+                <th>To</th>
                 <th>Date</th>
-                <th>Departure Time</th>
-                <th>Actions</th>
+                <th class="text-right">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @include('admin.schedules.filter')
+                                        @include('admin.booking.filter')
                                     </tbody>
                                 </table>
                             </div>
@@ -46,18 +49,18 @@
 <script src="{{ asset('js/common/crud_and_pagination.js') }}"></script>
 <script type="text/javascript">
     handleCrud(
-        '{{ route('train-schedules.create') }}',
-        '{{ route('train-schedules.store') }}',
-        '{{ route('train-schedules.show', ':id') }}',
-        '{{ route('train-schedules.edit', ':id') }}',
-        '{{ route('train-schedules.update', ':id') }}',
-        '{{ route('train-schedules.destroy', ':id') }}',
+        '{{ route('bookings.create') }}',
+        '{{ route('bookings.store') }}',
+        '{{ route('bookings.show', ':id') }}',
+        '{{ route('bookings.edit', ':id') }}',
+        '{{ route('bookings.update', ':id') }}',
+        '{{ route('bookings.destroy', ':id') }}',
         'tbody',
         {
             create: 'Add Train Schedules',
             edit: 'Update Train Schedules'
         },
-        '{{ route('train-schedules.index') }}',
+        '{{ route('bookings.index') }}',
         '{{ csrf_token() }}'
     );
     function Change_status(status,id){

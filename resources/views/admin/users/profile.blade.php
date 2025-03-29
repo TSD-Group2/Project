@@ -1,6 +1,6 @@
-@extends('app.layout.app')
+@extends('admin.layouts.app')
 @section('title', 'Profile')
-@section('main-content')
+@section('content')
 @php
 $activeTab = request('tab')?request('tab'):'basic';
 @endphp
@@ -22,9 +22,6 @@ $activeTab = request('tab')?request('tab'):'basic';
                         <p class="mb-1 text-muted text-fixed-white op-7">{{Auth::user()->roles()->first()->name}}</p>
                         <p class="fs-12 text-fixed-white mb-4 op-5">
                             <span class="me-3"><i class="ri-building-line me-1 align-middle"></i>{{Auth::user()->code}}</span>
-                        </p>
-                        <p class="fs-12 text-fixed-white mb-4 op-5">
-                            <span class="me-3 header-department"><i class="ri-building-line me-1 align-middle"></i>{{Auth::user()->department->name??''}}</span>
                         </p>
                     </div>
                 </div>
@@ -64,11 +61,6 @@ $activeTab = request('tab')?request('tab'):'basic';
                                     data-bs-target="#pills-password" type="button" role="tab"
                                     aria-controls="pills-password" aria-selected="true">Password</button>
                             </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link {{ $activeTab == 'department' ? 'active' : '' }}" id="pills-department-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-department" type="button" role="tab"
-                                    aria-controls="pills-department" aria-selected="false">Departments</button>
-                            </li>
                         </ul>
                         <div class="tab-content" id="pills-tabContent">
                             <div class="tab-pane {{ $activeTab == 'basic' ? 'show active' : '' }} text-muted" id="pills-basic-info" role="tabpanel"
@@ -85,10 +77,6 @@ $activeTab = request('tab')?request('tab'):'basic';
                                     <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
                                         <p class="mb-2 text-muted">User Name</p>
                                         <input type="text" name="username" class="form-control" id="username" value="{{Auth::user()->username}}" placeholder="User Name" readonly>
-                                    </div>
-                                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                                        <p class="mb-2 text-muted">Department</p>
-                                        <input type="text" name="code" class="form-control" id="code" value="{{Auth::user()->department->name??''}}" readonly>
                                     </div>
                                     <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
                                         <p class="mb-2 text-muted">Role</p>
@@ -109,10 +97,6 @@ $activeTab = request('tab')?request('tab'):'basic';
                                     <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
                                         <p class="mb-2 text-muted">Nic</p>
                                         <input type="text" name="nic" class="form-control" id="nic" value="{{Auth::user()->nic}}" placeholder="Nic" readonly>
-                                    </div>
-                                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                                        <p class="mb-2 text-muted">Basic Salary</p>
-                                        <input type="text" name="basic_salary" class="form-control" id="basic_salary" value="{{Auth::user()->basic_salary}}" placeholder="Basic Salary" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -156,25 +140,6 @@ $activeTab = request('tab')?request('tab'):'basic';
                                 </form>
                             </div>
                         </div>
-                        <div class="tab-pane {{ $activeTab == 'department' ? 'show active' : '' }} text-muted" id="pills-department" role="tabpanel"
-                            aria-labelledby="pills-department-tab" tabindex="0">
-                            <form id="department-form" action="{{route('users.department')}}" class="form" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                <div class="row gy-4">
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                                        <select class="js-example-basic-single" name="department" id="department">
-                                            <option value="" disabled selected>Select an Option</option>
-                                            @foreach(Auth::user()->departments as $department)
-                                            <option value="{{$department->id}}" {{Auth::user()->department_id==$department->id?'selected':''}}>{{$department->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 text-end">
-                                        <button type="submit" name="action" value="create" class="btn btn-primary submit">Update</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -184,7 +149,7 @@ $activeTab = request('tab')?request('tab'):'basic';
 <!--End::row-1 -->
 
 @endsection
-@section('script')
+@section('scripts')
 <script src="{{ asset('js/common/crud_and_pagination.js') }}"></script>
 <script type="text/javascript">
     $(document).ready(function() {

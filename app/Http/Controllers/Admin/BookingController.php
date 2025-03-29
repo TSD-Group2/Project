@@ -25,9 +25,16 @@ class BookingController extends Controller
         $this->middleware('permission:delete-booking')->only(['destroy']);
         $this->middleware('permission:edit-booking')->only(['edit', 'update']);
     }
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            $query = $request->input('query');
+            $bookings = Booking::paginate(config('default_pagination'));
+            return view('admin.booking.filter', compact('bookings'))->render();
+        } else {
+            $bookings = Booking::paginate(config('default_pagination'));
+        }
+        return view('admin.booking.index', compact('bookings'));
     }
 
     /**
@@ -63,7 +70,7 @@ class BookingController extends Controller
         }
 
         $bookingLimit = 5;
-        $bookingId=[];
+        $bookingId = [];
         foreach ($request->seats as $seatId) {
             if ($seatId != null) {
                 $seat = TrainSeat::find($seatId);
@@ -95,12 +102,12 @@ class BookingController extends Controller
                 ]);
 
                 $seat->update(['is_booked' => true]);
-                $bookingId[]=$booking->id;
+                $bookingId[] = $booking->id;
                 Log::info("Seat {$seat->seat_number} booked successfully.");
             }
         }
 
-        return response()->json(['message' => 'Seats booked successfully.','bookingIds'=>$bookingId], 200);
+        return response()->json(['message' => 'Seats booked successfully.', 'bookingIds' => $bookingId], 200);
     }
     /**
      * Display the specified resource.
@@ -131,7 +138,18 @@ class BookingController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $booking = Booking::find($id);
+
+        if (!$booking) {
+            return response()->json(['message' => 'Booking not found.'], 404);
+        }
+        $seat = TrainSeat::find($booking->seat_id);
+        if (!$seat) {
+            return response()->json(['message' => 'Seat not found.'], 404);
+        }
+        $seat->update(['is_booked' => false]);
+        $booking->delete();
+        return response()->json(['message' => 'Booking deleted and seat released successfully.']);
     }
     public function getSchedulesByDate(Request $request)
     {
@@ -174,22 +192,21 @@ class BookingController extends Controller
     {
         $totalFare = 0;
         $currentStation = $from_station_id;
-    
+
         while ($currentStation != $to_station_id) {
             $nextRoute = RouteFee::where('from_station_id', $currentStation)
                 ->where('to_station_id', '<=', $to_station_id)
                 ->orderBy('to_station_id')
                 ->first();
-    
+
             if (!$nextRoute) {
                 return null;
             }
-    
+
             $totalFare += $nextRoute->ticket_price;
             $currentStation = $nextRoute->to_station_id;
         }
-    
+
         return $totalFare;
     }
-
 }
