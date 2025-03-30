@@ -250,7 +250,7 @@
             $('#schedule_id').prop('disabled', true).html('<option value="">Loading...</option>');
 
             $.ajax({
-                url: "{{ route('getSchedulesByDate') }}",
+                url: "{{ route('getSchedulesByDateFront') }}",
                 method: "GET",
                 data: {
                     date: selectedDate
@@ -273,7 +273,7 @@
             $('#seats-container').html('<p>Loading Seats...</p>');
 
             $.ajax({
-                url: "{{ route('getSeatsByScheduleAndStations') }}",
+                url: "{{ route('getSeatsByScheduleAndStationsfront') }}",
                 method: "GET",
                 data: {
                     schedule_id: scheduleId,
