@@ -10,6 +10,10 @@ use App\Models\TrainSeat;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use stdClass;
+use Stripe\Stripe;
+use Stripe\Checkout\Session as StripeSession;
+
 
 class HomeController extends Controller
 {
@@ -94,7 +98,7 @@ class HomeController extends Controller
             }
         }
 
-        return response()->json(['message' => 'Seats booked successfully.', 'bookingIds' => $bookingId], 200);
+        return response()->json(['message' => 'Seats booked successfully.', 'bookingIds' => $bookingId, 'phone' => $request->phone_number, 'price' => $request->price_form], 200);
     }
     /**
      * Display the specified resource.
@@ -133,7 +137,7 @@ class HomeController extends Controller
     public function verifyOtp(Request $request)
     {
         $otp = $request->input('otp');
-        
+
         // Check if the OTP matches
         if ($otp == Session::get('otp')) {
             Session::forget('otp');
@@ -225,5 +229,124 @@ class HomeController extends Controller
         }
 
         return $totalFare;
+    }
+    public function bookingCancel(Request $request)
+    {
+        // dd($request->bookingId);
+        foreach ($request->bookingId as $id) {
+            $booking = Booking::find($id);
+
+            if ($booking) {
+                TrainSeat::where('id', $booking->seat_id)->update(['is_booked' => false]);
+                $booking->delete();
+            }
+        }
+
+        return response()->json(['message' => 'Booking cancelled successfully.'], 200);
+    }
+    public function bookingCancelStripe(Request $request)
+{
+    // Get the booking IDs from the request
+    $bookingIds = explode(',', $request->booking_ids);
+
+    foreach ($bookingIds as $id) {
+        $booking = Booking::find($id);
+
+        if ($booking) {
+            TrainSeat::where('id', $booking->seat_id)->update(['is_booked' => false]);
+            $booking->delete();
+        }
+    }
+
+    return redirect('booking');
+}
+
+    public function stripe(Request $request){
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+        $publicKey=env('STRIPE_KEY');
+        $ticketIds = $request->bookingIds;
+        $session = StripeSession::create([
+            'payment_method_types' => ['card'],
+            'line_items' => [[
+                'price_data' => [
+                    'currency' => 'usd',
+                    'product_data' => ['name' => 'Ticket Booking'],
+                    'unit_amount' => number_format(($request->amount/29600),2)*100,
+                ],
+                'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            'success_url' => url('/payment-success?session_id={CHECKOUT_SESSION_ID}'),
+            'cancel_url' => url('/cancel-booking-stripe?booking_ids=' .implode(',', $ticketIds)),
+            'client_reference_id' => implode(',', $ticketIds),
+        ]);
+    
+        return response()->json(['id' => $session->id,'publicKey'=>$publicKey]);
+    }
+    public function paymentSuccess(Request $request) {
+        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+
+        $session = \Stripe\Checkout\Session::retrieve($request->session_id);
+        if ($session->payment_status === 'paid') {
+            $ticketUrl = route('front-print.ticket', ['id' => $session->client_reference_id]);
+            return redirect('booking?id='.$session->client_reference_id);
+        }
+    
+        return redirect()->route('/');
+    }
+    
+    public function Payhere(Request $request)
+    {
+        $order_id = $request->order_id;
+        if (is_array($order_id)) {
+            $order_id = $order_id[0];
+        }
+        $sandbox = true;
+        $merchant_id = env('PAYHERE_MERCHANT_ID');
+        $name = env('APP_NAME');
+        $price =number_format($request->amount, 2, '.', '');
+        $currency = "LKR";
+        $merchant_secret = env('PAYHERE_MERCHANT_SECRET');
+        $first_name = 'Passenger';
+        $last_name = 'Passenger';
+        $email = 'passenger@gmail.com';
+        $phone = $request->phone;
+        $address = '';
+        $city = 'Colomb0';
+        $country = "Srilanka";
+        $items = $request->order_id;
+        $return_url = env('APP_URL');
+        $cancel_url = env('APP_URL');
+        $hash = strtoupper(
+            md5(
+                env('PAYHERE_MERCHANT_ID') .
+                    $order_id .
+                    number_format($price, 2, '.', '') .
+                    $currency .
+                    strtoupper(md5(env('PAYHERE_MERCHANT_SECRET')))
+            )
+        );
+
+        $obj = new stdClass();
+        $obj->sandbox = $sandbox;
+        $obj->order_id = $order_id;
+        $obj->merchant_id = $merchant_id;
+        $obj->name = $name;
+        $obj->price = $price;
+        $obj->currency = $currency;
+        $obj->hash = $hash;
+        $obj->first_name = $first_name;
+        $obj->last_name = $last_name;
+        $obj->email = $email;
+        $obj->phone = $phone;
+        $obj->address = $address;
+        $obj->city = $city;
+        $obj->country = $country;
+        $obj->items = $items;
+        $obj->return_url = $return_url;
+        $obj->cancel_url = $cancel_url;
+        return response()->json([
+            'data' => $obj,
+        ]);
     }
 }

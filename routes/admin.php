@@ -16,7 +16,7 @@ use App\Http\Controllers\Admin\UsersController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
-Route::post('login', [AdminAuthController::class, 'login'])->name('admin.login');
+Route::post('login', [AdminAuthController::class, 'login']);
 Route::post('logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
 Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
