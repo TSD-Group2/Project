@@ -131,7 +131,7 @@
                             <div class="row">
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                     <p class="mb-1">{{__('translate.mobile')}}</p>
-                                    <input type="number" id="phone_number" class="form-control" name="phone_number" required>
+                                    <input type="number" id="phone_number" class="form-control" name="phone_number" maxlength="11" oninput="limitPhoneNumberLength(this)" required>
                                     <input type="hidden" id="price" class="form-control" name="price" required>
                                     <input type="hidden" id="price-form" class="form-control" name="price_form" required>
                                 </div>
@@ -610,6 +610,11 @@
         }
 
     });
+    function limitPhoneNumberLength(input) {
+        if (input.value.length > 11) {
+            input.value = input.value.slice(0, 11);
+        }
+    }
 </script>
 
 @endsection

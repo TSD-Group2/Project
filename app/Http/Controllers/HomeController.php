@@ -180,8 +180,14 @@ class HomeController extends Controller
     public function getSchedulesByDate(Request $request)
     {
         $date = $request->input('date');
-        $formattedDate = Carbon::createFromFormat('d/m/y', $date)->format('Y-m-d');
-        $schedules = TrainSchedule::with('train')->where('schedule_date', $formattedDate)->get();
+        $formattedDate = null;
+        // dd($date);
+        // try {
+        //     $formattedDate = Carbon::createFromFormat('d-m-Y', $date)->format('Y-m-d');
+        // } catch (\Exception $e) {
+        //     return response()->json(['error' => 'Invalid date format. Please use d/m/Y format.'], 400);
+        // }
+        $schedules = TrainSchedule::with('train')->where('schedule_date', $date)->get();
         return response()->json(['schedules' => $schedules]);
     }
     public function getSeatsByScheduleAndStationsfront(Request $request)
