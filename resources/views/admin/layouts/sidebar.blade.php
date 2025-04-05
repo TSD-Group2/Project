@@ -11,12 +11,12 @@
       </li><!-- End Dashboard Nav -->
   @if(Gate::any(['view-trains', 'view-stations', 'view-route-fee', 'view-trains-schedules', 'view-booking', 'view-ticket-verifying']))
       <li class="nav-item">
-        <a class="nav-link {{ Request::is('admin/train') || Request::is('admin/train/create') || Request::is('admin/station') || Request::is('admin/station/create') 
+        <a class="nav-link {{ Request::is('admin/train') || Request::is('admin/train/create') || Request::is('admin/setting') || Request::is('admin/station') || Request::is('admin/station/create') 
         || Request::is('admin/route-fee') || Request::is('admin/route-fee/create') || Request::is('admin/train-schedules') || 
         Request::is('admin/train-schedules/create') || Request::is('admin/bookings/create') || Request::is('admin/bookings/create') ? 'collapsed' : '' }}" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text"></i><span>Schedule & Settings</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="forms-nav" class="nav-content collapse {{ Request::is('admin/train') || Request::is('admin/train/create') || Request::is('admin/station') || Request::is('admin/station/create') 
+        <ul id="forms-nav" class="nav-content collapse {{ Request::is('admin/train') || Request::is('admin/train/create') || Request::is('admin/setting') || Request::is('admin/station') || Request::is('admin/station/create') 
         || Request::is('admin/route-fee') || Request::is('admin/route-fee/create') || Request::is('admin/train-schedules') || 
         Request::is('admin/train-schedules/create') || Request::is('admin/bookings') || Request::is('admin/bookings/create') || 
         Request::is('admin/ticket-verify') || Request::is('admin/ticket-verify/create') ? ' show' : '' }}" data-bs-parent="#sidebar-nav">
