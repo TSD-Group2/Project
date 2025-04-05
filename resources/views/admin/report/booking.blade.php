@@ -33,7 +33,6 @@
                                 <th>From</th>
                                 <th>To</th>
                                 <th>Date</th>
-                                <th class="text-right">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -46,13 +45,6 @@
                                 <td>{{ $booking->fromStation->name }}</td>
                                 <td>{{ $booking->toStation->name }}</td>
                                 <td>{{ $booking->trainSchedule->schedule_date }}</td>
-                                <td class="text-right">
-                                    @can('delete-booking')
-                                    <button type="submit" onclick="destroy({{$booking->id}})" class="btn btn-icon btn-danger-transparent rounded-pill btn-wave">
-                                        <i class="ri-delete-bin-line"></i>
-                                    </button>
-                                    @endcan
-                                </td>
                             </tr>
                             @empty
                             <tr class="empty-row">

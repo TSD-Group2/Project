@@ -302,7 +302,22 @@
 
                 },
                 error: function(xhr, status, error) {
-                    alert('Error booking seats: ' + error);
+                    var errorMessage = xhr.responseJSON ? xhr.responseJSON.message : 'Error booking seats: ' + error;
+                    if (xhr.status==500) {
+                        Swal.fire({
+                        title: 'Error',
+                        text: errorMessage,
+                        icon: 'error',
+                        confirmButtonText: 'Ok',
+                    });
+                    }else{
+                        Swal.fire({
+                        title: 'Error',
+                        text: errorMessage,
+                        icon: 'error',
+                        confirmButtonText: 'Ok',
+                        });
+                    }
                 }
             });
         });

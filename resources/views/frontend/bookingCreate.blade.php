@@ -458,14 +458,24 @@
                                 //     }
                                 // });
                             },
-                            error: function(xhr) {
-                                var errorMessage = xhr.responseJSON && xhr.responseJSON.message ? xhr.responseJSON.message : 'An error occurred while booking the seats.';
-                                Swal.fire({
-                                    title: 'Error',
-                                    text: errorMessage,
-                                    icon: 'error',
-                                });
-                            }
+                            error: function(xhr, status, error) {
+                    var errorMessage = xhr.responseJSON ? xhr.responseJSON.message : 'Error booking seats: ' + error;
+                    if (xhr.status==500) {
+                        Swal.fire({
+                        title: 'Error',
+                        text: errorMessage,
+                        icon: 'error',
+                        confirmButtonText: 'Ok',
+                    });
+                    }else{
+                        Swal.fire({
+                        title: 'Error',
+                        text: errorMessage,
+                        icon: 'error',
+                        confirmButtonText: 'Ok',
+                        });
+                    }
+                }
                         });
                     } else {
                         Swal.fire({

@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\ResetPasswordController;
 use App\Http\Controllers\Admin\RolesAndPermissionController;
 use App\Http\Controllers\Admin\RouteFeeController;
+use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\StationController;
 use App\Http\Controllers\Admin\TicketVerifyController;
 use App\Http\Controllers\Admin\TrainController;
@@ -46,6 +47,8 @@ Route::get('/getSeatsByScheduleAndStations', [BookingController::class, 'getSeat
 Route::get('ticket-verification/{id}', [TicketVerifyController::class, 'verifyTicket']);
 Route::post('ticket-verify/{id}', [TicketVerifyController::class, 'updateVerification']);
 Route::resource('/ticket-verify',TicketVerifyController::class);
+Route::resource('/setting',SettingsController::class);
+Route::put('admin/setting/{setting}', [SettingsController::class, 'update'])->name('setting.update');
 Route::get('/booking-report', [ReportController::class, 'booking'])->name('booking.report');
 Route::get('/booking-pdf', [ReportController::class, 'export_pdf'])->name('booking.pdf');
 Route::get('/booking-excel', [ReportController::class, 'export_excel'])->name('booking.excel');

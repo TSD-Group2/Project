@@ -20,6 +20,13 @@
         || Request::is('admin/route-fee') || Request::is('admin/route-fee/create') || Request::is('admin/train-schedules') || 
         Request::is('admin/train-schedules/create') || Request::is('admin/bookings') || Request::is('admin/bookings/create') || 
         Request::is('admin/ticket-verify') || Request::is('admin/ticket-verify/create') ? ' show' : '' }}" data-bs-parent="#sidebar-nav">
+        @can('view-settings')
+        <li class="{{ Request::is('admin/setting') ? 'active' : '' }}">
+            <a href="{{route('setting.index')}}">
+              <i class="bi bi-circle"></i><span>Master Setting</span>
+            </a>
+          </li>
+        @endcan
         @can('view-trains')
         <li class="{{ Request::is('admin/train') ? 'active' : '' }}">
             <a href="{{route('train.index')}}">
