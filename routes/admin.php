@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ForgotPasswordController;
 use App\Http\Controllers\Admin\PrintController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\ResetPasswordController;
 use App\Http\Controllers\Admin\RolesAndPermissionController;
 use App\Http\Controllers\Admin\RouteFeeController;
@@ -45,4 +46,7 @@ Route::get('/getSeatsByScheduleAndStations', [BookingController::class, 'getSeat
 Route::get('ticket-verification/{id}', [TicketVerifyController::class, 'verifyTicket']);
 Route::post('ticket-verify/{id}', [TicketVerifyController::class, 'updateVerification']);
 Route::resource('/ticket-verify',TicketVerifyController::class);
+Route::get('/booking-report', [ReportController::class, 'booking'])->name('booking.report');
+Route::get('/booking-pdf', [ReportController::class, 'export_pdf'])->name('booking.pdf');
+Route::get('/booking-excel', [ReportController::class, 'export_excel'])->name('booking.excel');
 });

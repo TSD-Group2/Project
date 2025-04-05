@@ -126,7 +126,7 @@
 @if(Gate::any(['view-user', 'create-user']))
       <li class="nav-item">
         <a class="nav-link {{ Request::is('admin/users') || Request::is('admin/users/create') ? 'collapsed' : '' }}" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-layout-text-window-reverse"></i><span>Users</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-person"></i><span>Users</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="tables-nav" class="nav-content collapse {{ Request::is('admin/users') || Request::is('admin/users/create') ? ' show' : '' }}" data-bs-parent="#sidebar-nav">
         @can('view-user')
@@ -146,47 +146,15 @@
         </ul>
       </li><!-- End Tables Nav -->
 @endif
-      {{--<li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-bar-chart"></i><span>Charts</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="charts-chartjs.html">
-              <i class="bi bi-circle"></i><span>Chart.js</span>
-            </a>
-          </li>
-          <li>
-            <a href="charts-apexcharts.html">
-              <i class="bi bi-circle"></i><span>ApexCharts</span>
-            </a>
-          </li>
-          <li>
-            <a href="charts-echarts.html">
-              <i class="bi bi-circle"></i><span>ECharts</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Charts Nav -->--}}
       @if(Gate::any(['view-reports', 'export-reports']))
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-gem"></i><span>Reports</span><i class="bi bi-chevron-down ms-auto"></i>
+        <a class="nav-link collapsed {{ Request::is('admin/booking-report')? 'collapsed' : '' }}" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-file-earmark-bar-graph"></i><span>Reports</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="icons-bootstrap.html">
-              <i class="bi bi-circle"></i><span>Bootstrap Icons</span>
-            </a>
-          </li>
-          <li>
-            <a href="icons-remix.html">
-              <i class="bi bi-circle"></i><span>Remix Icons</span>
-            </a>
-          </li>
-          <li>
-            <a href="icons-boxicons.html">
-              <i class="bi bi-circle"></i><span>Boxicons</span>
+        <ul id="icons-nav" class="nav-content collapse {{ Request::is('admin/booking-report')  ? ' show' : '' }}" data-bs-parent="#sidebar-nav">
+          <li class="{{ Request::is('admin/booking-report') ? 'active' : '' }}">
+            <a href="{{ route('booking.report') }}">
+              <i class="bi bi-circle"></i><span>Booking Report</span>
             </a>
           </li>
         </ul>
