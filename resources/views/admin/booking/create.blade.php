@@ -89,7 +89,7 @@
                     <div class="row">
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                             <p class="mb-1">{{__('translate.mobile')}}</p>
-                            <input type="number" id="phone_number" class="form-control" name="phone_number" required>
+                            <input type="number" id="phone_number" class="form-control" name="phone_number" maxlength="11" oninput="limitPhoneNumberLength(this)" required>
                             <input type="hidden" id="price" class="form-control" name="price" required>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -153,7 +153,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        // Step 1: Fetch Schedules Based on Date
+       
         $('#date').on('change', function() {
             let selectedDate = $(this).val();
             $('#schedule_id').prop('disabled', true).html('<option value="">Loading...</option>');
@@ -190,27 +190,26 @@
                     to_station_id: toStationId
                 },
                 success: function(response) {
-                    $('#seat-layout').empty(); // Clear previous seat layout
+                    $('#seat-layout').empty();
 
-                    let seatsPerRow = 4; // Two seats on left, aisle, two seats on right
-                    let aisleWidth = 40; // Width of the aisle space
+                    let seatsPerRow = 4;
+                    let aisleWidth = 40;
 
                     let rowDiv = null;
 
                     response.seats.forEach((seat, index) => {
                         if (index % seatsPerRow === 0) {
-                            rowDiv = $('<div class="seat-row"></div>'); // Create new row
+                            rowDiv = $('<div class="seat-row"></div>');
                             $('#seat-layout').append(rowDiv);
                         }
 
                         let seatPosition = index % seatsPerRow;
 
-                        // Add the aisle space after two seats (middle of the row)
                         if (seatPosition === 2) {
                             rowDiv.append(`<div class="seat-gap" style="width: ${aisleWidth}px;"></div>`);
                         }
 
-                        let isBooked = response.booked_seat_ids.includes(seat.id); // Check if seat is booked
+                        let isBooked = response.booked_seat_ids.includes(seat.id);
                         let seatClass = isBooked ? "seat booked" : "seat available";
 
                         let seatHtml = `
@@ -313,7 +312,7 @@
         return;
     }
 
-    const bookingIdsParam = bookingIds.join(','); // Convert array to comma-separated string
+    const bookingIdsParam = bookingIds.join(',');
 
     let print_url = "{{ route('print.ticket', ['id' => ':id']) }}";
     print_url = print_url.replace(':id', encodeURIComponent(bookingIdsParam)); 
@@ -332,6 +331,11 @@
     }
 }
     });
+    function limitPhoneNumberLength(input) {
+        if (input.value.length > 11) {
+            input.value = input.value.slice(0, 11);
+        }
+    }
 </script>
 
 @endsection
