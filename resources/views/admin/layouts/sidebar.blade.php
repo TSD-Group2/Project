@@ -109,10 +109,10 @@
 @endif
 @if(Gate::any(['view-roles', 'create-roles']))
       <li class="nav-item">
-        <a class="nav-link {{ Request::is('admin/roles') || Request::is('admin/roles/create') || Request::is('admin/roles*') ? 'collapsed' : '' }}" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+        <a class="nav-link {{ Request::is('admin/roles') || Request::is('admin/roles/create') || Request::is('admin/roles*') ? 'collapsed' : '' }}" data-bs-target="#roles-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text"></i><span>Roles And Permissions</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="forms-nav" class="nav-content collapse {{ Request::is('admin/roles') || Request::is('admin/roles/create') || Request::is('admin/roles*') ? ' show' : '' }}" data-bs-parent="#sidebar-nav">
+        <ul id="roles-nav" class="nav-content collapse {{ Request::is('admin/roles') || Request::is('admin/roles/create') || Request::is('admin/roles*') ? ' show' : '' }}" data-bs-parent="#sidebar-nav">
           @can('view-roles')
         <li class="{{ Request::is('admin/roles') ? 'active' : '' }}">
             <a href="{{route('roles.index')}}">

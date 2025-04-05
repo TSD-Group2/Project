@@ -126,8 +126,8 @@
                             </select>
                         </div>
                     </div>
-
-                    <div class="row">
+                    <br>
+                    <div class="row  mt-5">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
 
                             <div id="seat-layout" class="seat-layout" style="display: none;">
@@ -137,7 +137,8 @@
                         </div>
 
                     </div>
-                    <div class="row mt-2">
+                    <br>
+                    <div class="row mt-5">
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
 
                             <button type="submit" class="btn btn-primary submit">Book Seat</button>
