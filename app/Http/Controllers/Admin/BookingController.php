@@ -157,7 +157,7 @@ class BookingController extends Controller
     }
     public function getSchedulesByDate(Request $request)
     {
-        $schedules = TrainSchedule::where('schedule_date', $request->date)->get();
+        $schedules = TrainSchedule::with('train')->where('schedule_date', $request->date)->get();
         return response()->json(['schedules' => $schedules]);
     }
 

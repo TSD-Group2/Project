@@ -89,7 +89,7 @@
                     <div class="row">
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                             <p class="mb-1">{{__('translate.mobile')}}</p>
-                            <input type="number" id="phone_number" class="form-control" name="phone_number" maxlength="11" oninput="limitPhoneNumberLength(this)" required>
+                            <input type="number" id="phone_number" class="form-control" placeholder="947********" name="phone_number" maxlength="11" oninput="limitPhoneNumberLength(this)" required>
                             <input type="hidden" id="price" class="form-control" name="price" required>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -168,7 +168,7 @@
                 success: function(response) {
                     $('#schedule_id').prop('disabled', false).html('<option value="">Select Schedule</option>');
                     response.schedules.forEach(schedule => {
-                        $('#schedule_id').append(`<option value="${schedule.id}">${schedule.schedule_date} - ${schedule.departure_time}</option>`);
+                        $('#schedule_id').append(`<option value="${schedule.id}">${schedule.train.name} - ${schedule.departure_time}</option>`);
                     });
                 }
             });
@@ -214,7 +214,7 @@
                         let seatClass = isBooked ? "seat booked" : "seat available";
 
                         let seatHtml = `
-            <div class="${seatClass}" data-seat-id="${seat.id}" data-seat-number="${seat.seat_number}">
+            <div class="${seatClass} seat-checkbox" data-seat-id="${seat.id}" data-seat-number="${seat.seat_number}">
                     <input type="checkbox" class="seat-checkbox" data-seat-id="${seat.id}" id="seat-${seat.id}" name="seats[]" value="${seat.id}" style="display: none;" ${isBooked ? 'disabled' : ''}>
 
                     <label for="seat-${seat.id}" class="${isBooked ? 'booked' : ''}" ${isBooked ? 'disabled' : ''}>
@@ -259,7 +259,16 @@
 
         $('#booking-form').submit(function(e) {
             e.preventDefault();
+            let phoneNumber = $('#phone_number').val();
+            if (phoneNumber.length !== 11) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Phone number must be 11 digits!',
+                });
+                return;
 
+            }
             if (selectedSeats.length === 0) {
                 Swal.fire({
                     title: 'Operation Failed?',
